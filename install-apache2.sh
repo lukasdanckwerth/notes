@@ -14,7 +14,7 @@ log() {
 }
 
 ask_user() {
-  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  read -r -p "Install $(bold "postgresql") $(green "y/n, default no")? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     download_and_execute_script "install-postgresql.sh"
   fi
