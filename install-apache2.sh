@@ -39,9 +39,8 @@ if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   log "downloading index.html to ${INS_INDEX_TEMPORARY}"
 
   curl "${IA_INDEX_URL}" -o "${INS_INDEX_TEMPORARY}"
-  cat "${INS_INDEX_TEMPORARY}"
+  [[ -f "${INS_INDEX_TEMPORARY}" ]] || (log "ERROR: can't download index.html" && exit 1)
 
   sudo rm -rf "${IA_INDEX}"
-  sudo mv "${INS_INDEX_TEMPORARY}" "${IA_INDEX}"
-  
+  sudo mv -v "${INS_INDEX_TEMPORARY}" "${IA_INDEX}"
 fi
