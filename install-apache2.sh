@@ -13,32 +13,33 @@ log() {
   echo "[install-apache2.sh] ${*}";
 }
 
-# ========================================
-# CONSTANTS
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
 
 IA_HOSTNAME=$(hostname)
 log "hostname: ${IA_HOSTNAME}"
 
-# ========================================
-# UPDATE
-log "update packages"
-log
+
+log "UPDATE PACKAGES"
 sudo apt update -y
 
-# ========================================
-# INSTALL
-log "install packages"
+
+log "INSTALL PACKAGES"
 sudo apt install vim apache2 php postgresql postgresql-contrib -y
 
-# ========================================
-# CONFIGURE APACHE
 
+log "CONFIGURE APACHE"
 if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
-    log "creating ${IA_SERVERNAME_FILE_PATH}"
+    echo "${IA_HOSTNAME}" >> "${IA_SERVERNAME_FILE_PATH}"
+    log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
 fi
 
+log "enable rewrite"
+sudo a2enmod rewrite
+
+log " "
+log "Finished script."
+log " "
 exit 0
 
 # ========================================
@@ -46,11 +47,11 @@ exit 0
 
 ServerName __YOUR_WEB_SITE__
 
-# enable rewrite
-sudo a2enmod rewrite
+#
 
 
 
+log "configure postgresql"
 $ sudo systemctl is-active postgresql
 $ sudo systemctl is-enabled postgresql
 $ sudo systemctl status postgresql
