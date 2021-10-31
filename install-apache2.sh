@@ -41,5 +41,3 @@ if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   log "INS_INDEX_TEMPORARY: ${INS_INDEX_TEMPORARY}"
 
 fi
-
-env
