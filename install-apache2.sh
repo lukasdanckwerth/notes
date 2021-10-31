@@ -47,10 +47,6 @@ exit 0
 
 ServerName __YOUR_WEB_SITE__
 
-#
-
-
-
 log "configure postgresql"
 $ sudo systemctl is-active postgresql
 $ sudo systemctl is-enabled postgresql
