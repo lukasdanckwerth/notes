@@ -3,9 +3,10 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=35
+INS_VERSION=36
 
 export INS_NAME="install-server"
+export INS_SEPARATOR="--------------------------------------"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
 export INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen | tail -c 12)"
 export INS_USER=${SUDO_USER}
@@ -21,7 +22,7 @@ die() {
 }
 
 log_headline() {
-  log "--------------------------------------"
+  log "${INS_SEPARATOR}"
   log "${*}"
 }
 
@@ -44,7 +45,8 @@ download_and_execute_script() {
     --silent \
     --show-error
 
-  log "executing ${LOCAL_SCRIPT_PATH}"
+  log_headline "executing ${SCRIPT_NAME}"
+
   # shellcheck disable=SC1090
   . "${LOCAL_SCRIPT_PATH}"
 }
