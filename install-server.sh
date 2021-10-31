@@ -23,6 +23,7 @@ log_headline() {
 log "start"
 log "whoami: $(whoami)"
 log "USER: ${USER}"
+log "SUDO_USER: ${SUDO_USER}"
 log "1: ${1}"
 
 exit 0
