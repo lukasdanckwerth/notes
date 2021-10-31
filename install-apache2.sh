@@ -49,10 +49,10 @@ log "postgresql status: $(sudo pg_isready)"
 log "restart postgresql"
 sudo systemctl restart postgresql
 
-read -r -p "Do you want to install pgadmin4? yes / no" answer
+read -r -p "Do you want to install pgadmin4 (y/n)? " answer
 log "answer: ${answer}"
 
-if [[ "${answer}" -eq "yes" ]]; then
+if [[ "${answer}" == "y" ]]; then
   log_headline "will install pgadmin4"
   log "adding public key for pgadmin"
   curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
@@ -76,7 +76,7 @@ else
   log "skip install pgadmin4"
 fi
 
-read -r -p "Do you want to install composer? yes / no " installComposer
+read -r -p "Do you want to install composer (y/n)?" installComposer
 log "installComposer: ${installComposer}"
 
 if [[ "${installComposer}" -eq "yes" ]]; then
