@@ -8,8 +8,6 @@ IS_CONTENT_DIR="/var/www/content"
 IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"
 
-env
-
 log() {
   echo -e "[install-samba]  ${*}"
 }
@@ -27,7 +25,7 @@ sudo apt-get install --assume-yes \
   samba-common-bin
 
 echo
-read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at . (y/n) " replaceConfig
+read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download smb.conf to ${IS_SAMBA_CONFIG_TEMP}"
