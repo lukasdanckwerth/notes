@@ -16,23 +16,29 @@ log() {
 # ========================================
 # CONSTANTS
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
+log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
+
 IA_HOSTNAME=$(hostname)
-log 'hostname: ' "${IA_HOSTNAME}"
+log "hostname: ${IA_HOSTNAME}"
 
 # ========================================
 # UPDATE
-echo "update packages"
+log "update packages"
 sudo apt update -y
 
 # ========================================
 # INSTALL
-echo "install packages"
+log "install packages"
 sudo apt install vim apache2 php postgresql postgresql-contrib -y
-
-exit 0
 
 # ========================================
 # CONFIGURE APACHE
+
+if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
+    log "creating ${IA_SERVERNAME_FILE_PATH}"
+fi
+
+exit 0
 
 # ========================================
 # CONFIGURE POSTGRESQL
