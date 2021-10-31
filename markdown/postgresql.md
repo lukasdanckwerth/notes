@@ -2,12 +2,17 @@
 ## Users
 When installing postgreSQL the user __postgres__ is already created. To login use:
 ```shell
-sudo -i -u postgres
+$ sudo -i -u postgres
 ```
 
 To run the postgres command line interface then use:
 ```shell
-psql
+$ psql
+```
+
+Instead of the two previous commands they can be combined to:
+```shell
+$ sudo -u postgres psql
 ```
 
 To quit the postgres cli use `\q`:
@@ -15,13 +20,27 @@ To quit the postgres cli use `\q`:
 postgres=# \q
 ```
 
-### Create new user
+### Create new database user
+To create a new pg database user type:
 ```shell
-# if you are logged in as postgres it's simply
-postgres@foo:~$ createuser --interactive
+# assuming you are logged in as postgres
+$ createuser --interactive
+```
 
-# or as an other user
-sudo -u postgres createuser --interactive
+### Create new linux user
+> Note that first it's necessary to have a linux user for a database user and second you can't be logged in as `postgres` user for this action.
+```shell
+$ sudo adduser sammy
+```
 
-# ... this prompts an wizard for the user creation
+## Database
+To create a new pg database type:
+```shell
+postgres@pc:~$ createuser --interactive
+```
+
+### Create database
+As user `postgres` you type
+```shell
+postgres@pc:~$ createuser --interactive
 ```
