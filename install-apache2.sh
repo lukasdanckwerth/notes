@@ -27,15 +27,15 @@ log "enable rewrite"
 sudo a2enmod rewrite
 
 echo
-read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
-if [[ "${replaceConfig}" == "y" ]]; then
+read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. (y/n) " INS_REPLACE_CONFIG
+if [[ "${INS_REPLACE_CONFIG}" == "y" ]]; then
   echo 'replaceConfig'
 fi
 
 
 echo
-read -r -p "Do you want to replace the index.html $(bold "${IA_INDEX}") with the default one from this script? The default index.html can't viewed at ${IA_INDEX_URL}. (y/n) " replaceConfig
-if [[ "${replaceConfig}" == "y" ]]; then
+read -r -p "Do you want to replace the index.html $(bold "${IA_INDEX}") with the default one from this script? The default index.html can't viewed at ${IA_INDEX_URL}. (y/n) " INS_REPLACE_INDEX
+if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   echo 'replaceConfig'
 fi
 
