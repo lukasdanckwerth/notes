@@ -14,5 +14,5 @@ multipass shell development-server
 
 ##### Install apache2, php, postgresql etc.
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main/install-apache2.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main/install-apache2.sh?token=AAWE272DHPSYJ6NU3NSUYC3BP2BS4)"
 ```
