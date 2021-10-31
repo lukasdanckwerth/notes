@@ -3,12 +3,11 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=27
+INS_VERSION=28
 
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
-INS_UUID=$(uuidgen);
-export INS_TEMP_DIR="/tmp/${INS_NAME}-${INS_UUID: -10}"
+export INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen | tail -c 12)"
 export INS_USER=${SUDO_USER}
 export INS_DEBUG=0
 export INS_SKIP_UPDATE=0
@@ -31,8 +30,7 @@ bold() {
 }
 
 temporary_file() {
-  INS_UUID="$(uuidgen)"
-  echo -e "${INS_TEMP_DIR}/${INS_UUID: -10}"
+  echo -e "${INS_TEMP_DIR}/$(uuidgen | tail -c 12)"
 }
 
 download_and_execute_script() {
@@ -52,11 +50,6 @@ download_and_execute_script() {
 }
 
 log "start (version: ${INS_VERSION})"
-
-alias shortuuid="INS_UUID_TMP=$(uuidgen) && echo ${INS_UUID_TMP: -10}"
-
-echo "shortuuid: $(shortuuid)"
-echo "shortuuid: $(shortuuid)"
 
 if [[ "$*" == *--debug* ]]; then
   export INS_DEBUG=1 && log "enabled debug"
