@@ -26,13 +26,13 @@ echo
 sudo apt update -y
 
 if which "apache2" &>/dev/null; then
-  log "apache2 already installed"
+  log "apache2 already installed $(which "apache2")"
 else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
 
 if which "samba" &>/dev/null; then
-  log "samba already installed"
+  log "samba already installed: $(which "samba")"
 else
   echo
   read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
