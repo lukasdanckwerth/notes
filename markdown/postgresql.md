@@ -29,18 +29,15 @@ postgres=# \q
 ### Create database user
 To create a new database user:
 ```shell
-# assuming you are logged in as postgres
+# assuming you are logged in as postgres (sudo -i -u postgres)
 $ createuser --interactive
 ```
 
 Use `psql` to change password for newly created database user.
 ```shell
 $ psql
-# postgres=#
-```
 
-```shell
-postgres=# ALTER USER postgres WITH ENCRYPTED PASSWORD 'postgres';
+postgres=# \password postgres;
 ```
 
 ### Create linux user
@@ -60,11 +57,4 @@ To create a new database named `john`:
 ```shell
 # assuming you are logged in as postgres
 $ createdb john
-```
-
-### Create database
-As user `postgres` you type
-```shell
-# assuming you are logged in as postgres
-postgres@pc:~$ createuser --interactive
 ```
