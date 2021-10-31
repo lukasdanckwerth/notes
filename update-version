@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+set -u
+
+log() {
+  echo -e "[update-version]  ${*}"
+}
+
+UV_SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+UV_SCRIPT="${UV_SCRIPT_DIR}/install-server.sh"
+
+[[ -f "${UV_SCRIPT}" ]] || (log "script (${UV_SCRIPT}) not existed. " && exit 1)
+
+#UV_CURRENT_VERSION
+UV_NEW_VERSION=$(date +%s)
+
+grep -E -w "" "${UV_SCRIPT}"
+
+
+
+log "working directory: ${UV_SCRIPT_DIR}"
+log "new version: ${UV_NEW_VERSION}"
