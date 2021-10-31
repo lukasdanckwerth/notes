@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=41
+INS_VERSION=42
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -22,7 +22,7 @@ die() {
 }
 
 log_headline() {
-  log "${INS_SEPARATOR}"
+  echo && log "${INS_SEPARATOR}"
   log "${*}"
 }
 
@@ -53,13 +53,6 @@ download_and_execute_script() {
 
   # shellcheck disable=SC1090
   . "${LOCAL_SCRIPT_PATH}"
-}
-
-ask_user() {
-  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
-  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
-    download_and_execute_script "install-postgresql.sh"
-  fi
 }
 
 [[ "$*" == *--debug* ]] && export INS_DEBUG=1

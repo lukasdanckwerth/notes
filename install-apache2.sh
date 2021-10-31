@@ -13,6 +13,13 @@ log() {
   echo "[install-apache2]  ${*}"
 }
 
+ask_user() {
+  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    download_and_execute_script "install-postgresql.sh"
+  fi
+}
+
 log "install packages" && echo
 sudo apt install -y vim apache2 php && echo
 
