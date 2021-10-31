@@ -42,11 +42,11 @@ UV_CHANGES=$(sed -n "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/gp" "${UV_SCRIPT}")
 # wet sed run
 sed -i "" "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/g" "${UV_SCRIPT}"
 
-log "upgrade from ${UV_CURRENT_VERSION} to ${UV_NEW_VERSION}"
-
 git add .
 git commit -m "version ${UV_NEW_VERSION}"
 git push
+
+log "upgrade from ${UV_CURRENT_VERSION} to ${UV_NEW_VERSION}"
 
 # print empty line on end
 echo ""
