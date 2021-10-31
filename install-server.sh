@@ -6,6 +6,7 @@ export IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/inst
 export IS_TEMP="/tmp/install-apache2-server-$(uuidgen)"
 export IS_USER_1=${SUDO_USER}
 export IS_DEBUG=0
+export IS_SKIP_UPDATE=0
 
 log() {
   echo "[install-server]  ${*}"
@@ -46,14 +47,14 @@ download_and_execute_script() {
 log "start"
 
 if [[ "$*" == *--debug* ]]; then
-  export IS_DEBUG=1
-  log "enabled debug"
+  export IS_DEBUG=1 && log "enabled debug"
 fi
 
 log "working directory: ${IS_TEMP}"
 mkdir -p "${IS_TEMP}"
 
 if [[ "$*" == *--no-update* ]]; then
+  export IS_SKIP_UPDATE=1
   log "disabled updates (--no-update)"
 else
   log "running apt update" && echo
