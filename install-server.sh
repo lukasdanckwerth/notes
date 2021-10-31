@@ -21,20 +21,15 @@ log_headline() {
 }
 
 IS_YES_NO="\033[32m(y/n)\033[0m"
-IS_DO_APT_UPDATE=1
 
 log "start"
 
 if [ ! -z ${1+x} ] && [[ "${1}" == "noupdate" ]]; then
-  IS_DO_APT_UPDATE=1
-fi
-
-if [[ "${IS_DO_APT_UPDATE}" == "1" ]]; then
+  log "skipping apt update"
+else
   log "running apt update"
   echo
   sudo apt update -y
-else
-  log "skipping apt update"
 fi
 
 if which "apache2" &>/dev/null; then
