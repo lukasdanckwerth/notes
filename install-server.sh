@@ -28,14 +28,14 @@ bold() {
 }
 
 temporary_file() {
-  local INS_UUID="$(uuidgen)"
-  echo -e "${INS_TEMP_DIR}/${INS_UUID: -10}"
+  echo -e "${INS_TEMP_DIR}/${"$(uuidgen)": -10}"
 }
 
 download_and_execute_script() {
   local SCRIPT_NAME=${1}
   local SCRIPT_URL="${INS_REPOSITORY_URL}/${SCRIPT_NAME}"
-  local LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
+  LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
+  local LOCAL_SCRIPT_PATH
 
   curl "${SCRIPT_URL}" \
     --output "${LOCAL_SCRIPT_PATH}" \
