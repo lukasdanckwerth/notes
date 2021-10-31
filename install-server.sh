@@ -93,6 +93,6 @@ else
 fi
 
 log "cleaning up"
-rm -rf "${IS_TEMP}"
+[[ -d "${IS_TEMP}" ]] && rm -rf "${IS_TEMP}"
 
 log "finished"
