@@ -35,7 +35,7 @@ fi
 
 
 echo
-read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
+read -r -p "Do you want to replace the index.html $(bold "${IA_INDEX}") with the default one from this script? The default index.html can't viewed at ${IA_INDEX_URL}. (y/n) " replaceConfig
 
 if [[ "${replaceConfig}" == "y" ]]; then
   echo 'replaceConfig'
