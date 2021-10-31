@@ -5,8 +5,7 @@ set -e # exit the script if any statement returns a non-true return value
 
 echo -e """
 # =========================================================== #
-# install-apache2.sh                                          #
-# =========================================================== #
+# install-apache2.sh
 """
 
 log() {
@@ -40,9 +39,14 @@ log "postgresql is-active: $(sudo systemctl is-active postgresql)"
 log "postgresql is-enabled: $(sudo systemctl is-enabled postgresql)"
 log "postgresql status: $(sudo systemctl status postgresql)"
 log "postgresql status: $(sudo pg_isready)"
+log "restart postgresql"
+sudo systemctl restart postgresql
+
+read -rp "Do you want to install pgadmin4? (Y)es or (N)o" answer
+
+log "answer: ${answer}"
 
 echo -e """
-# =========================================================== #
 # successfully finished script                                #
 # =========================================================== #
 """
@@ -54,7 +58,7 @@ ServerName __YOUR_WEB_SITE__
 
 $
 
-$ sudo systemctl restart postgresql
+$
 
 $ curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
 
