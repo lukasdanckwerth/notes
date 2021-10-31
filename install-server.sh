@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=36
+INS_VERSION=37
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -51,23 +51,27 @@ download_and_execute_script() {
   . "${LOCAL_SCRIPT_PATH}"
 }
 
+ask_user() {
+  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    download_and_execute_script "install-postgresql.sh"
+  fi
+}
+
 log "start (version: ${INS_VERSION})"
 
 if [[ "$*" == *--debug* ]]; then
-  export INS_DEBUG=1 && log "enabled debug"
+  export INS_DEBUG=1 && log "enabled debug: ${INS_DEBUG}"
 fi
 
-log "working directory: ${INS_TEMP_DIR}"
 mkdir -p "${INS_TEMP_DIR}"
 
-if [[ "$*" == *--no-update* ]]; then
-  export INS_SKIP_UPDATE=1 && log "disabled updates (--no-update)"
-else
+if ! [[ "$*" == *--no-update* ]]; then
   log "running apt update" && echo
   sudo apt update -y
 fi
 
-if which "apache23" &>/dev/null; then
+if which "apache2" &>/dev/null || [[ "${INS_DEBUG}" == "1" ]]; then
   log "apache2 ($(bold "$(which "apache2")")) already installed"
 else
   download_and_execute_script "install-apache2.sh"
