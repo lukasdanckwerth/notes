@@ -1,12 +1,14 @@
 #!/bin/bash
+set -u
+set -e
 
-set -e # exit the script if any statement returns a non-true return value
-
-IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
-IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL}/smb/smb.conf"
+IS_REPOSITORY_URL_1="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
+IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL_1}/smb/smb.conf"
 IS_CONTENT_DIR="/var/www/content"
 IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"
+
+env
 
 log() {
   echo -e "[install-samba]  ${*}"

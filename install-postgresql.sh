@@ -1,9 +1,7 @@
 #!/bin/bash
+set -u
+set -e
 
-# set -x   # prints all commands
-set -e # exit the script if any statement returns a non-true return value
-
-# functions
 log() {
   echo "[install-postgresql]  ${*}"
 }

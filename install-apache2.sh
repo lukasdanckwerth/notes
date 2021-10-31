@@ -1,13 +1,10 @@
 #!/bin/bash
-
-# set -x   # prints all commands
-set -e # exit the script if any statement returns a non-true return value
+set -u
+set -e
 
 log() {
   echo "[install-apache2]  ${*}"
 }
-
-log "1: ${1}"
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
@@ -27,5 +24,3 @@ fi
 
 log "enable rewrite"
 sudo a2enmod rewrite
-
-exit 0
