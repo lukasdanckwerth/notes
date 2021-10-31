@@ -10,6 +10,11 @@ die() {
   log "${*}" && exit 1
 }
 
+# check for local changes
+if [[ ! $(git status --porcelain) ]]; then
+  log "no changes to commit" && exit 0
+fi
+
 # regular expressions
 UV_REGEX_VERSION_TAG="^INS_VERSION=[0-9]{1,20}$"
 UV_REGEX_VERSION="[0-9]{1,20}$"
