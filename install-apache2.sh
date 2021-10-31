@@ -5,7 +5,7 @@ set -e # exit the script if any statement returns a non-true return value
 
 echo -e """
 # =========================================================== #
-# Running install-apache2.sh ...                              #
+# install-apache2.sh                                          #
 # =========================================================== #
 """
 
@@ -35,21 +35,24 @@ fi
 log "enable rewrite"
 sudo a2enmod rewrite
 
-log " "
-log "Finished script."
-log " "
+log "CONFIGURE POSTGRESQL"
+log "postgresql is-active: $(sudo systemctl is-active postgresql)"
+log "postgresql is-enabled: $(sudo systemctl is-enabled postgresql)"
+log "postgresql status: $(sudo systemctl status postgresql)"
+log "postgresql status: $(sudo pg_isready)"
+
+echo -e """
+# =========================================================== #
+# successfully finished script                                #
+# =========================================================== #
+"""
+
 exit 0
 
-# ========================================
-# CONFIGURE POSTGRESQL
 
 ServerName __YOUR_WEB_SITE__
 
-log "configure postgresql"
-$ sudo systemctl is-active postgresql
-$ sudo systemctl is-enabled postgresql
-$ sudo systemctl status postgresql
-$ sudo pg_isready
+$
 
 $ sudo systemctl restart postgresql
 
@@ -70,3 +73,5 @@ sudo apt update && sudo apt install wget php-cli php-zip unzip curl
 cd /tmp/
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+
+
