@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # set -x   # prints all commands
-set -e   # exit the script if any statement returns a non-true return value
+set -e # exit the script if any statement returns a non-true return value
 
 echo -e """
 # =========================================================== #
@@ -10,7 +10,7 @@ echo -e """
 """
 
 log() {
-  echo "[install-apache2.sh] ${*}";
+  echo "[install-apache2.sh] ${*}"
 }
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
@@ -19,19 +19,17 @@ log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
 IA_HOSTNAME=$(hostname)
 log "hostname: ${IA_HOSTNAME}"
 
-
 log "UPDATE PACKAGES"
 sudo apt update -y
-
 
 log "INSTALL PACKAGES"
 sudo apt install vim apache2 php postgresql postgresql-contrib -y
 
-
 log "CONFIGURE APACHE"
 if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
-    echo "${IA_HOSTNAME}" >> "${IA_SERVERNAME_FILE_PATH}"
-    log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
+  sudo touch "${IA_SERVERNAME_FILE_PATH}"
+  echo "${IA_HOSTNAME}" > "${IA_SERVERNAME_FILE_PATH}"
+  log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
 fi
 
 log "enable rewrite"
@@ -70,5 +68,5 @@ $ sudo apt-get install php-pgsql
 # install composer
 sudo apt update && sudo apt install wget php-cli php-zip unzip curl
 cd /tmp/
-curl -sS https://getcomposer.org/installer |php
+curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
