@@ -22,6 +22,8 @@ log_headline "RUN SCRIPT"
 if command -v "apache2" &> /dev/null; then
   echo "It seams like apache2 is already installed $(command -v "apache2")."
   read -r -p "Do you want to continue (y/n)?" answerContinue
+else
+  log "apache2 not found on system"
 fi
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
