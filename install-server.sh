@@ -14,11 +14,13 @@ die() {
 
 log_headline() {
   echo ""
-  log "==========================================="
+  log "--------------------------------------"
   log "${*}"
 }
 
 log "start" && log ""
+log_headline "UPDATE PACKAGES"
+sudo apt update -y
 
 if command -v "apache2" &>/dev/null; then
   echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
@@ -36,8 +38,7 @@ log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
 IA_HOSTNAME=$(hostname)
 log "hostname: ${IA_HOSTNAME}"
 
-log_headline "UPDATE PACKAGES"
-sudo apt update -y
+
 
 log_headline "INSTALL PACKAGES"
 sudo apt install vim apache2 php postgresql postgresql-contrib php-pgsql -y
