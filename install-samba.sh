@@ -19,9 +19,7 @@ bold() {
 }
 
 log "start"
-log "SUDO_USER: ${SUDO_USER}"
-LOCAL_USER_ID=$(id -u "$(logname)")
-log "LOCAL_USER_ID: ${LOCAL_USER_ID}"
+log "logname: ${logname}"
 
 log "install packages"
 sudo apt-get install --assume-yes \
