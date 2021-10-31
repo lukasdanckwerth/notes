@@ -39,6 +39,21 @@ if [[ "${replaceConfig}" == "y" ]]; then
     log "moving new config from ${IS_SAMBA_CONFIG_TEMP} to ${IS_SAMBA_CONFIG}"
     sudo mv "${IS_SAMBA_CONFIG_TEMP}" "${IS_SAMBA_CONFIG}"
 
+    if [[ -f "${IS_SAMBA_CONFIG}" ]]; then
+
+      log "${IS_SAMBA_CONFIG} file"
+      sudo ls -la "${IS_SAMBA_CONFIG}"
+
+      log "${IS_SAMBA_CONFIG} content"
+      log ""
+      sudo cat "${IS_SAMBA_CONFIG}"
+      log ""
+
+    else
+      log "couldn't move ${IS_SAMBA_CONFIG}"
+      exit 1
+    fi
+
   else
     log "couldn't load smb.conf ${IS_SAMBA_CONFIG}"
     exit 1
