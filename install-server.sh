@@ -45,7 +45,7 @@ else
 fi
 
 if which "apache2" &>/dev/null; then
-  log "apache2 already installed $(bold "$(which "apache2")")"
+  log "apache2 ($(bold "$(which "apache2")")) already installed"
 else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
@@ -62,7 +62,7 @@ else
 fi
 
 if which "composer" &>/dev/null; then
-  log "composer already installed: $(bold "$(which "composer")")"
+  log "composer ($(bold "$(which "composer")")) already installed"
 else
   echo
   read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
