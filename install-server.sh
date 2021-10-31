@@ -26,7 +26,8 @@ bold() {
 }
 
 temporary_file() {
-  echo -e "${INS_TEMP_DIR}/$(uuidgen)"
+  local INS_UUID="$(uuidgen)"
+  echo -e "${INS_TEMP_DIR}/${INS_UUID: -10}"
 }
 
 download_and_execute_script() {
