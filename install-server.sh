@@ -20,6 +20,9 @@ log_headline() {
 }
 
 log "start"
+log "whoami: $(whoami)"
+
+exit 0
 
 log_headline "sudo apt update -y"
 echo
@@ -29,6 +32,17 @@ if which "apache2" &>/dev/null; then
   log "apache2 already installed $(which "apache2")"
 else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
+fi
+
+if which "composer" &>/dev/null; then
+  log "samba already installed: $(which "composer")"
+else
+  echo
+  read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  echo
+  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
+  fi
 fi
 
 if which "samba" &>/dev/null; then

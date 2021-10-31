@@ -13,6 +13,8 @@ log() {
 }
 
 log "start"
+log "whoami: $(whoami)"
+
 log "install packages"
 sudo apt-get install --assume-yes \
   samba \
