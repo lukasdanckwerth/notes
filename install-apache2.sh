@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -x
+
+# set -x   # prints all commands
+set -e   # exit the script if any statement returns a non-true return value
 
 echo -e """
 # =========================================================== #
