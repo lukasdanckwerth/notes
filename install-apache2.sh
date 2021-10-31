@@ -13,13 +13,6 @@ log() {
   echo "[install-apache2]  ${*}"
 }
 
-ask_user() {
-  read -r -p "Install $(bold "postgresql") $(green "y/n, default no")? " IS_INSTALL_COMPOSER
-  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
-    download_and_execute_script "install-postgresql.sh"
-  fi
-}
-
 log "install packages" && echo
 sudo apt install -y vim apache2 php && echo
 
@@ -30,10 +23,7 @@ if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
   log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
 fi
 
-log "enable rewrite"
-sudo a2enmod rewrite
-
-THE_ANSWER=$(ask_user )
+log "enable rewrite: $(sudo a2enmod rewrite)"
 
 echo
 read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. $(green "(y/n)") " INS_REPLACE_CONFIG
