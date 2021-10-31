@@ -5,7 +5,7 @@ set -e # exit the script if any statement returns a non-true return value
 
 # functions
 log() {
-  echo "[install-apache2.sh] ${*}"
+  echo "[install-new-server.sh]  ${*}"
 }
 
 die() {
@@ -121,8 +121,5 @@ echo
 read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " installSamba
 
 
-
 log_headline "successfully finished script"
 exit 0
-
-ServerName __YOUR_WEB_SITE__
