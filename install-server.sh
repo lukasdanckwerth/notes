@@ -50,15 +50,8 @@ log "start"
 log "creating temporary directory: ${IS_TEMP}"
 mkdir -p "${IS_TEMP}"
 
-if [[ "$*" == *YOURSTRING* ]]
-then
-    echo "YES"
-else
-    echo "NO"
-fi
-
-if [ ! -z ${1+x} ] && [[ "${1}" == "noupdate" ]]; then
-  log "skipping apt update due to \"noupdate\" flag"
+if [[ "$*" == *--no-update* ]]; then
+  log "disabled updates (--no-update)"
 else
   log "running apt update" && echo
   sudo apt update -y
