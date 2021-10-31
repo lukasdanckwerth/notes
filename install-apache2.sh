@@ -28,6 +28,7 @@ log_headline "RUN SCRIPT"
 if command -v "apache2" &>/dev/null; then
   echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
   read -r -p "Do you want to continue (y/n)?" answerContinue
+  "${answerContinue}" == "y" || log "user aborted"
 else
   log "apache2 not found on system"
 fi
