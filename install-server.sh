@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=48
+INS_VERSION=49
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -12,6 +12,7 @@ export INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen | tail -c 12)"
 export INS_USER=${SUDO_USER}
 export INS_DEBUG=0
 export INS_SKIP_UPDATE=0
+export INS_LOCAL_IP=$(ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p')
 
 log() {
   echo "[install-server]  ${*}"

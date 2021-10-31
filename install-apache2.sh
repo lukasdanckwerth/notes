@@ -5,7 +5,7 @@ set -e
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 IA_HOSTNAME=$(hostname)
 IA_APACHE_CONFIG="/etc/apache2/apache2.conf"
-IA_DEFAULT_CONFIG_URL="${INS_REPOSITORY_URL}/apache2/apache.conf"
+IA_APACHE_CONFIG_URL="${INS_REPOSITORY_URL}/apache2/apache.conf"
 IA_INDEX="/var/www/html/index.html"
 IA_INDEX_URL="${INS_REPOSITORY_URL}/apache2/index.html"
 
@@ -26,7 +26,7 @@ fi
 log "enable rewrite: $(sudo a2enmod rewrite)"
 
 echo
-read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. $(green "(y/n)") " INS_REPLACE_CONFIG
+read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_APACHE_CONFIG_URL}. $(green "(y/n)") " INS_REPLACE_CONFIG
 if [[ "${INS_REPLACE_CONFIG}" == "y" ]]; then
   echo 'replaceConfig'
 fi
@@ -41,6 +41,7 @@ if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   [[ -f "${INS_INDEX_TEMPORARY}" ]] || (log "ERROR: can't download index.html" && exit 1)
 
   sed -i "s/___TITLE___/${IA_HOSTNAME}/g" "${INS_INDEX_TEMPORARY}"
+  sed -i "s/___LOCAL_IP___/${INS_LOCAL_IP}/g" "${INS_INDEX_TEMPORARY}"
 
   log "$(sudo rm -rfv "${IA_INDEX}")"
   log "$(sudo mv -v "${INS_INDEX_TEMPORARY}" "${IA_INDEX}")"
