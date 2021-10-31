@@ -2,6 +2,9 @@
 set -u
 set -e
 
+# next line will be replaced by `update-version` command
+INS_VERSION=1
+
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
 INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen)"
@@ -50,9 +53,7 @@ download_and_execute_script() {
 }
 
 log "start"
-
-# next line will be replaced by `update-version` command
-log "version: 1"
+log "version: ${INS_VERSION}"
 
 if [[ "$*" == *--debug* ]]; then
   export INS_DEBUG=1 && log "enabled debug"

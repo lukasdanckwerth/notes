@@ -6,15 +6,40 @@ log() {
   echo -e "[update-version]  ${*}"
 }
 
+die() {
+  log "${*}" && exit 1
+}
+
+# regular expressions
+UV_REGEX_VERSION_TAG="^INS_VERSION=[0-9]{1,20}$";
+UV_REGEX_VERSION="[0-9]{1,20}$";
+
+# receive script
 UV_SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-UV_SCRIPT="${UV_SCRIPT_DIR}/install-server.sh"
+UV_SCRIPT_NAME="install-server.sh"
+UV_SCRIPT="${UV_SCRIPT_DIR}/${UV_SCRIPT_NAME}"
 
-[[ -f "${UV_SCRIPT}" ]] || (log "script (${UV_SCRIPT}) not existed. " && exit 1)
+# validate script
+[[ -f "${UV_SCRIPT}" ]] || (die "ERROR: missing script at ${UV_SCRIPT}.")
 
-#UV_CURRENT_VERSION
-UV_NEW_VERSION=$(date +%s)
+# receive current version
+UV_CURRENT_TAG=$(grep -E "${UV_REGEX_VERSION_TAG}" "${UV_SCRIPT}")
+if [[ "${UV_CURRENT_TAG}" == "" ]]; then
+  die "ERROR: can't receive version tag."
+fi
 
-log "working directory: ${UV_SCRIPT_DIR}"
+UV_CURRENT_VERSION=$(echo "${UV_CURRENT_TAG}" | grep -o -E "${UV_REGEX_VERSION}")
+if [[ "${UV_CURRENT_VERSION}" == "" ]]; then
+  die "ERROR: can't receive version."
+fi
+
+# calculate next version
+UV_NEW_VERSION=$((UV_CURRENT_VERSION+1))
+UV_NEW_TAG="INS_VERSION=${UV_NEW_VERSION}"
+
+log "current tag: ${UV_CURRENT_TAG}"
+log "current version: ${UV_CURRENT_VERSION}"
 log "new version: ${UV_NEW_VERSION}"
+log "new tag: ${UV_NEW_TAG}"
 
-grep -E '^log\sversion:\s[0-9]{1,20}' "${UV_SCRIPT}"
+echo ""
