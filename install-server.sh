@@ -31,19 +31,16 @@ temporary_file() {
 download_and_execute_script() {
   local SCRIPT_NAME=${1}
   local SCRIPT_URL="${IS_REPOSITORY_URL}/${SCRIPT_NAME}"
-  local LOCAL_SCRIPT_PATH="$(temporary_file).command"
-
-  log "SCRIPT_NAME: ${SCRIPT_NAME}"
-  log "SCRIPT_URL: ${SCRIPT_URL}"
-  log "LOCAL_SCRIPT_PATH: ${LOCAL_SCRIPT_PATH}"
+  local LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
 
   curl "${SCRIPT_URL}" \
     --output "${LOCAL_SCRIPT_PATH}" \
     --silent \
     --show-error
 
-  log "cat ${LOCAL_SCRIPT_PATH}"
-  cat "${LOCAL_SCRIPT_PATH}"
+  log "ls -ls ${IS_TEMP}"
+  ls -la "${IS_TEMP}"
+
 }
 
 log "start"
@@ -53,7 +50,7 @@ if [[ "$*" == *--debug* ]]; then
   log "enabled debug"
 fi
 
-log "creating temporary directory: ${IS_TEMP}"
+log "working directory: ${IS_TEMP}"
 mkdir -p "${IS_TEMP}"
 
 if [[ "$*" == *--no-update* ]]; then
@@ -99,7 +96,7 @@ else
   fi
 fi
 
-log "cleaning up"
-[[ -d "${IS_TEMP}" ]] && rm -rf "${IS_TEMP}"
+log "removing working directory: ${IS_TEMP}"
+rm -rf "${IS_TEMP}"
 
 log "finished"
