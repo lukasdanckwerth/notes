@@ -46,6 +46,4 @@ git add .
 git commit -m "version ${UV_NEW_VERSION}"
 git push
 
-echo
-log "new version ${UV_NEW_VERSION} (was ${UV_CURRENT_VERSION})"
-echo
+echo && log "new version ${UV_NEW_VERSION} (was ${UV_CURRENT_VERSION})" && echo

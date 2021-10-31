@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=16
+INS_VERSION=17
 
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
@@ -32,7 +32,6 @@ bold() {
 
 temporary_file() {
   INS_UUID="$(uuidgen)"
-  local INS_UUID
   echo -e "${INS_TEMP_DIR}/${INS_UUID: -10}"
 }
 
