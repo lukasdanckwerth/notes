@@ -54,7 +54,7 @@ else
   fi
 fi
 
-if which "samba" &>/dev/null; then
+if which "sambaa" &>/dev/null; then
   log "samba already installed: $(which "samba")"
 else
   echo
