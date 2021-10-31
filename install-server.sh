@@ -2,11 +2,11 @@
 set -u
 set -e
 
-export IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
-export IS_TEMP="/tmp/install-apache2-server-$(uuidgen)"
-export IS_USER_1=${SUDO_USER}
-export IS_DEBUG=0
-export IS_SKIP_UPDATE=0
+export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
+export INS_TEMP_DIR="/tmp/install-apache2-server-$(uuidgen)"
+export INS_USER=${SUDO_USER}
+export INS_DEBUG=0
+export INS_SKIP_UPDATE=0
 
 log() {
   echo "[install-server]  ${*}"
@@ -26,12 +26,12 @@ bold() {
 }
 
 temporary_file() {
-  echo -e "${IS_TEMP}/$(uuidgen)"
+  echo -e "${INS_TEMP_DIR}/$(uuidgen)"
 }
 
 download_and_execute_script() {
   local SCRIPT_NAME=${1}
-  local SCRIPT_URL="${IS_REPOSITORY_URL}/${SCRIPT_NAME}"
+  local SCRIPT_URL="${INS_REPOSITORY_URL}/${SCRIPT_NAME}"
   local LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
 
   curl "${SCRIPT_URL}" \
@@ -47,14 +47,14 @@ download_and_execute_script() {
 log "start"
 
 if [[ "$*" == *--debug* ]]; then
-  export IS_DEBUG=1 && log "enabled debug"
+  export INS_DEBUG=1 && log "enabled debug"
 fi
 
-log "working directory: ${IS_TEMP}"
-mkdir -p "${IS_TEMP}"
+log "working directory: ${INS_TEMP_DIR}"
+mkdir -p "${INS_TEMP_DIR}"
 
 if [[ "$*" == *--no-update* ]]; then
-  export IS_SKIP_UPDATE=1
+  export INS_SKIP_UPDATE=1
   log "disabled updates (--no-update)"
 else
   log "running apt update" && echo
@@ -97,7 +97,7 @@ else
   fi
 fi
 
-log "removing working directory: ${IS_TEMP}"
-rm -rf "${IS_TEMP}"
+log "removing working directory: ${INS_TEMP_DIR}"
+rm -rf "${INS_TEMP_DIR}"
 
 log "finished"
