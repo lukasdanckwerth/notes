@@ -12,6 +12,10 @@ log() {
   echo "[install-samba]  ${*}"
 }
 
+bold() {
+  echo "$(tput bold)${*}$(tput sgr0)"
+}
+
 log "start"
 log "whoami: $(whoami)"
 
@@ -21,7 +25,7 @@ sudo apt-get install --assume-yes \
   samba-common-bin
 
 echo
-read -r -p "Do you want to replace the config $(tput bold)${IS_SAMBA_CONFIG}$(tput sgr0) with the default one from this script? The default config can't viewed at . (y/n) " replaceConfig
+read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at . (y/n) " replaceConfig
 
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download smb.conf to ${IS_SAMBA_CONFIG_TEMP}"
@@ -49,7 +53,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
 fi
 
 echo
-read -r -p "Do you want to set the samba $(tput bold)password$(tput sgr0) for the user ${USER} (y/n)? " SET_PASSWORD
+read -r -p "Do you want to set the $(bold "samba password") for the user $(bold "${USER}") (y/n)? " SET_PASSWORD
 if [[ "${SET_PASSWORD}" == "y" ]]; then
   sudo smbpasswd -a "${USER}"
 fi
