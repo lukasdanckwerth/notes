@@ -28,11 +28,27 @@ temporary_file() {
   echo -e "${IS_TEMP}/$(uuidgen)"
 }
 
+download_and_execute_script() {
+  local SCRIPT_NAME=${1}
+  local SCRIPT_URL="${IS_REPOSITORY_URL}/${SCRIPT_NAME}"
+  local LOCAL_SCRIPT_PATH="$(temporary_file).command"
+
+  log "SCRIPT_NAME: ${SCRIPT_NAME}"
+  log "SCRIPT_URL: ${SCRIPT_URL}"
+  log "LOCAL_SCRIPT_PATH: ${LOCAL_SCRIPT_PATH}"
+
+  curl "${SCRIPT_URL}" \
+    --output "${LOCAL_SCRIPT_PATH}" \
+    --silent \
+    --show-error
+
+
+}
+
 log "start"
 
 log "creating temporary directory"
 log "IS_TEMP: ${IS_TEMP}"
-
 
 log "IS_USER_1: ${IS_USER_1}"
 log "IS_USER_2: ${IS_USER_2}"
