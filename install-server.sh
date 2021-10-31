@@ -25,13 +25,13 @@ log_headline "sudo apt update -y"
 echo
 sudo apt update -y
 
-if command -v "apache2" &>/dev/null; then
+if which "apache2" &>/dev/null; then
   log "apache2 already installed"
 else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
 
-if command -v "smb" &>/dev/null; then
+if which "samba" &>/dev/null; then
   log "samba already installed"
 else
   echo
