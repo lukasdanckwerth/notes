@@ -2,8 +2,7 @@
 set -u
 set -e
 
-IS_REPOSITORY_URL_1="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
-IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL_1}/smb/smb.conf"
+IS_DEFAULT_CONFIG_URL="${INS_REPOSITORY_URL}/smb/smb.conf"
 IS_CONTENT_DIR="/var/www/content"
 IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"
@@ -17,8 +16,7 @@ bold() {
 }
 
 log "start"
-log "IS_USER_1: ${IS_USER_1}"
-log "IS_USER_2: ${IS_USER_2}"
+log "INS_USER: ${INS_USER}"
 
 log "install packages"
 sudo apt-get install --assume-yes \
@@ -69,8 +67,8 @@ if [[ "${replaceConfig}" == "y" ]]; then
 fi
 
 echo
-read -r -p "Set $(bold "samba password") for the user $(bold "${USER}") (y/n)? " SET_PASSWORD
+read -r -p "Set $(bold "samba password") for the user $(bold "${INS_USER}") (y/n)? " SET_PASSWORD
 echo
 if [[ "${SET_PASSWORD}" == "y" ]]; then
-  sudo smbpasswd -a "${USER}"
+  sudo smbpasswd -a "${INS_USER}"
 fi
