@@ -20,9 +20,18 @@ log "CONFIGURE POSTGRESQL"
 
 IP_IS_ACTIVE=$(sudo systemctl is-active postgresql);
 log "postgresql is-active: ${IP_IS_ACTIVE}"
+if [[ "${IP_IS_ACTIVE}" != "active" ]]; then
+  die "postgresql is NOT active"
+  exit 1
+fi
 
 IP_IS_ENABLED=$(sudo systemctl is-enabled postgresql);
 log "postgresql is-enabled: ${IP_IS_ENABLED}"
+if [[ "${IP_IS_ENABLED}" != "enabled" ]]; then
+  die "postgresql is NOT enabled"
+  exit 1
+fi
+
 
 log "postgresql status:"
 sudo systemctl status postgresql
