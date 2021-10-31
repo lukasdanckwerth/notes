@@ -3,6 +3,7 @@ set -u
 set -e
 
 export IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
+export IS_TEMP="/tmp/lukasdanckwerth/install-apache2-server"
 export IS_USER_1=${SUDO_USER}
 export IS_USER_2=${LOGNAME}
 
@@ -23,7 +24,16 @@ bold() {
   echo -e "$(tput bold)${*}$(tput sgr0)"
 }
 
+temporary_file() {
+  echo -e "${IS_TEMP}/$(uuidgen)"
+}
+
 log "start"
+
+log "creating temporary directory"
+log "IS_TEMP: ${IS_TEMP}"
+
+
 log "IS_USER_1: ${IS_USER_1}"
 log "IS_USER_2: ${IS_USER_2}"
 
@@ -35,7 +45,7 @@ else
 fi
 
 if which "apache2" &>/dev/null; then
-  log "apache2 already installed $(which "apache2")"
+  log "apache2 already installed $(bold "$(which "apache2")")"
 else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
@@ -52,7 +62,7 @@ else
 fi
 
 if which "composer" &>/dev/null; then
-  log "composer already installed: $(which "composer")"
+  log "composer already installed: $(bold "$(which "composer")")"
 else
   echo
   read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
@@ -63,7 +73,7 @@ else
 fi
 
 if which "samba" &>/dev/null; then
-  log "samba already installed: $(which "samba")"
+  log "samba already installed: $(bold "$(which "samba")")"
 else
   echo
   read -r -p "Install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
