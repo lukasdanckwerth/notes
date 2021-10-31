@@ -3,14 +3,24 @@
 # set -x   # prints all commands
 set -e # exit the script if any statement returns a non-true return value
 
-echo -e """
-# =========================================================== #
-# install-apache2.sh
-"""
+# functions
+banner() {
+  echo -e """
+  # ====================================================== #
+  #
+  # ${*}
+  """
+}
 
 log() {
   echo "[install-apache2.sh] ${*}"
 }
+
+die() {
+  log "ERROR" && log "" && log "${*}"
+}
+
+banner "install-apache2.sh"
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
@@ -73,8 +83,22 @@ read -r -p "Do you want to install composer? yes / no " installComposer
 log "installComposer: ${installComposer}"
 
 if [[ "${installComposer}" -eq "yes" ]]; then
-  log "skip install composer"
+  log "install composer"
   sudo apt update -y
+
+  log "install dependency packages"
+  sudo apt install wget php-cli php-zip unzip curl
+
+  log "moving to temporary dir"
+  pushd /tmp/
+
+  log "download installer"
+  curl -sS https://getcomposer.org/installer | php
+
+  log "download installer"
+  sudo mv composer.phar /usr/local/bin/composer
+
+  popd
 else
   log "skip install composer"
 fi
@@ -83,14 +107,6 @@ echo -e """
 # successfully finished script                                #
 # =========================================================== #
 """
-
 exit 0
 
 ServerName __YOUR_WEB_SITE__
-
-# ========================================
-# install composer
-sudo apt update && sudo apt install wget php-cli php-zip unzip curl
-cd /tmp/
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
