@@ -3,9 +3,9 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=24
+INS_VERSION=25
 
-alias shortuuid="INS_UUID=$(uuidgen); echo ${INS_UUID: -10};"
+alias shortuuid="INS_UUID=$(uuidgen) && echo ${INS_UUID: -10};"
 
 echo "shortuuid: $(shortuuid)"
 echo "shortuuid: $(shortuuid)"
