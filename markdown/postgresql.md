@@ -1,3 +1,7 @@
+# PostgreSQL
+
+- [Users](#users)
+- [Database](#database)
 
 ## Users
 When installing postgreSQL the user __postgres__ is already created. To login use:
@@ -31,6 +35,9 @@ $ createuser --interactive
 > Note that first it's necessary to have a linux user for a database user and second you can't be logged in as `postgres` user for this action.
 ```shell
 $ sudo adduser sammy
+
+# if you would like to set a password for the new user
+$ sudo passwd sammy 
 ```
 
 ## Database
