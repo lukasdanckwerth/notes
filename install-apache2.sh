@@ -4,14 +4,6 @@
 set -e # exit the script if any statement returns a non-true return value
 
 # functions
-banner() {
-  echo -e """
-  # ====================================================== #
-  #
-  # ${*}
-  """
-}
-
 log() {
   echo "[install-apache2.sh] ${*}"
 }
@@ -20,7 +12,12 @@ die() {
   log "ERROR" && log "" && log "${*}"
 }
 
-banner "install-apache2.sh"
+log_headline() {
+  log "==========================================="
+  log "${*}"
+}
+
+log_headline "install-apache2.sh"
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
@@ -28,13 +25,13 @@ log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
 IA_HOSTNAME=$(hostname)
 log "hostname: ${IA_HOSTNAME}"
 
-log "UPDATE PACKAGES"
+log_headline "UPDATE PACKAGES"
 sudo apt update -y
 
-log "INSTALL PACKAGES"
+log_headline "INSTALL PACKAGES"
 sudo apt install vim apache2 php postgresql postgresql-contrib php-pgsql -y
 
-log "CONFIGURE APACHE"
+log_headline "CONFIGURE APACHE"
 if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
   sudo touch "${IA_SERVERNAME_FILE_PATH}"
   echo "${IA_HOSTNAME}" >"${IA_SERVERNAME_FILE_PATH}"
@@ -44,7 +41,7 @@ fi
 log "enable rewrite"
 sudo a2enmod rewrite
 
-log "CONFIGURE POSTGRESQL"
+log_headline "CONFIGURE POSTGRESQL"
 log "postgresql is-active: $(sudo systemctl is-active postgresql)"
 log "postgresql is-enabled: $(sudo systemctl is-enabled postgresql)"
 log "postgresql status: $(sudo systemctl status postgresql)"
@@ -56,7 +53,7 @@ read -r -p "Do you want to install pgadmin4? yes / no" answer
 log "answer: ${answer}"
 
 if [[ "${answer}" -eq "yes" ]]; then
-  log "will install pgadmin4"
+  log_headline "will install pgadmin4"
   log "adding public key for pgadmin"
   curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
 
@@ -83,7 +80,7 @@ read -r -p "Do you want to install composer? yes / no " installComposer
 log "installComposer: ${installComposer}"
 
 if [[ "${installComposer}" -eq "yes" ]]; then
-  log "install composer"
+  log_headline "install composer"
   sudo apt update -y
 
   log "install dependency packages"
