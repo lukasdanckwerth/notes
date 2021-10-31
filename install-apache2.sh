@@ -41,5 +41,7 @@ if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   curl "${IA_INDEX_URL}" -o "${INS_INDEX_TEMPORARY}"
   cat "${INS_INDEX_TEMPORARY}"
 
+  sudo rm -rf "${IA_INDEX}"
+  sudo mv "${INS_INDEX_TEMPORARY}" "${IA_INDEX}"
   
 fi
