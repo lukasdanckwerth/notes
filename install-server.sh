@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=38
+INS_VERSION=39
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -28,6 +28,10 @@ log_headline() {
 
 bold() {
   echo -e "$(tput bold)${*}$(tput sgr0)"
+}
+
+green() {
+  echo -e "$(tput green)${*}$(tput sgr0)"
 }
 
 temporary_file() {
