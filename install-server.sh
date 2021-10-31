@@ -5,6 +5,7 @@ set -e
 export IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
 export IS_TEMP="/tmp/install-apache2-server-$(uuidgen)"
 export IS_USER_1=${SUDO_USER}
+export IS_DEBUG=0
 
 log() {
   echo "[install-server]  ${*}"
@@ -46,6 +47,11 @@ download_and_execute_script() {
 }
 
 log "start"
+
+if [[ "$*" == *--debug* ]]; then
+  export IS_DEBUG=1
+  log "enabled debug"
+fi
 
 log "creating temporary directory: ${IS_TEMP}"
 mkdir -p "${IS_TEMP}"
