@@ -3,6 +3,8 @@
 # set -x   # prints all commands
 set -e # exit the script if any statement returns a non-true return value
 
+IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main/"
+
 # functions
 log() {
   echo "[install-server]  ${*}"
@@ -13,19 +15,19 @@ die() {
 }
 
 log_headline() {
-  echo ""
   log "--------------------------------------"
   log "${*}"
 }
 
-log "start" && log ""
+log "start"
+
 log_headline "UPDATE PACKAGES"
 sudo apt update -y
 
 if command -v "apache2" &>/dev/null; then
   echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
   read -r -p "Do you want to continue (y/n)? " answerContinue
-  "${answerContinue}" == "y" || (log "user aborted" && exit 0)
+  [[ "${answerContinue}" == "y" ]] || (log "user aborted" && exit 0)
 else
   log "apache2 not found on system"
 fi
@@ -52,14 +54,6 @@ fi
 
 log "enable rewrite"
 sudo a2enmod rewrite
-
-log_headline "CONFIGURE POSTGRESQL"
-log "postgresql is-active: $(sudo systemctl is-active postgresql)"
-log "postgresql is-enabled: $(sudo systemctl is-enabled postgresql)"
-log "postgresql status: $(sudo systemctl status postgresql)"
-log "postgresql status: $(sudo pg_isready)"
-log "restart postgresql"
-sudo systemctl restart postgresql
 
 echo
 read -r -p "Do you want to install $(tput bold)pgAdmin$(tput sgr0) (y/n)? " installPgAdmin
@@ -117,6 +111,9 @@ fi
 
 echo
 read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " installSamba
+if [[ "${installSamba}" == "y" ]]; then
+  sudo /bin/bash -c "$(curl -fsSL ${IS_REPOSITORY_URL}install-samba.sh)"
+fi
 
 log "successfully finished script"
 exit 0
