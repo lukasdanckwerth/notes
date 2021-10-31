@@ -25,5 +25,3 @@ popd
 if [[ -f "/usr/local/bin/composer" ]]; then
   log "successfully installed composer"
 fi
-
-exit 0

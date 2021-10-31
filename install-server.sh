@@ -1,12 +1,11 @@
 #!/bin/bash
-
-# set -x   # prints all commands
-set -e # exit the script if any statement returns a non-true return value
-set -u # a reference to any variable you haven't previously defined - with the exceptions of $* and $@ - is an error, and causes the program to immediately exit.
+set -u
+set -e
 
 export IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
+export IS_USER_1=${SUDO_USER}
+export IS_USER_2=${LOGNAME}
 
-# functions
 log() {
   echo "[install-server]  ${*}"
 }
@@ -20,15 +19,14 @@ log_headline() {
   log "${*}"
 }
 
-IS_YES_NO="\033[32m(y/n)\033[0m"
-
 log "start"
+log "IS_USER_1: ${IS_USER_1}"
+log "IS_USER_2: ${IS_USER_2}"
 
 if [ ! -z ${1+x} ] && [[ "${1}" == "noupdate" ]]; then
   log "skipping apt update"
 else
-  log "running apt update"
-  echo
+  log "running apt update" && echo
   sudo apt update -y
 fi
 
@@ -38,11 +36,22 @@ else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
 
+if grep "postgresql" /etc/passwd &>/dev/null; then
+  log "postgresql already installed."
+else
+  echo
+  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  echo
+  if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
+  fi
+fi
+
 if which "composer" &>/dev/null; then
   log "composer already installed: $(which "composer")"
 else
   echo
-  read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) ${IS_YES_NO}? " IS_INSTALL_COMPOSER
+  read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
   echo
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
