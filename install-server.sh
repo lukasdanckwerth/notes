@@ -48,7 +48,9 @@ download_and_execute_script() {
 }
 
 log "start"
-log version 1
+
+# next line will be replaced by `update-version` command
+log "version: 1"
 
 if [[ "$*" == *--debug* ]]; then
   export INS_DEBUG=1 && log "enabled debug"
@@ -58,8 +60,7 @@ log "working directory: ${INS_TEMP_DIR}"
 mkdir -p "${INS_TEMP_DIR}"
 
 if [[ "$*" == *--no-update* ]]; then
-  export INS_SKIP_UPDATE=1
-  log "disabled updates (--no-update)"
+  export INS_SKIP_UPDATE=1 && log "disabled updates (--no-update)"
 else
   log "running apt update" && echo
   sudo apt update -y
