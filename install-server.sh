@@ -21,7 +21,8 @@ log_headline() {
 
 log "start"
 
-log_headline "UPDATE PACKAGES"
+log_headline "sudo apt update -y"
+echo
 sudo apt update -y
 
 if command -v "apache2" &>/dev/null; then
@@ -30,16 +31,16 @@ else
   sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
 fi
 
-
 if command -v "smb" &>/dev/null; then
   log "samba already installed"
 else
   echo
   read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
+  echo
   if [[ "${IS_INSTALL_SAMBA}" == "y" ]]; then
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-samba.sh")" "noupdate"
   fi
 fi
 
-log "successfully finished script"
+log "finished"
 exit 0
