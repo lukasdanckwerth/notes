@@ -24,6 +24,7 @@ log "hostname: ${IA_HOSTNAME}"
 # ========================================
 # UPDATE
 log "update packages"
+log
 sudo apt update -y
 
 # ========================================
