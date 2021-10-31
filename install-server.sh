@@ -21,13 +21,9 @@ log_headline() {
 }
 
 log "start"
-log "whoami: $(whoami)"
-log "USER: ${USER}"
-log "SUDO_USER: ${SUDO_USER}"
 log "1: ${1}"
-
-LOCAL_USER_ID=$(id -u "$(logname)")
-log "LOCAL_USER_ID: ${LOCAL_USER_ID}"
+log "*: ${*}"
+log "*: ${*}"
 
 exit 0
 
