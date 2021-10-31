@@ -14,9 +14,7 @@ UV_SCRIPT="${UV_SCRIPT_DIR}/install-server.sh"
 #UV_CURRENT_VERSION
 UV_NEW_VERSION=$(date +%s)
 
-grep -E -w '' "${UV_SCRIPT}"
-
-
-
 log "working directory: ${UV_SCRIPT_DIR}"
 log "new version: ${UV_NEW_VERSION}"
+
+grep -E '^log\sversion:\s[0-9]{1,20}' "${UV_SCRIPT}"
