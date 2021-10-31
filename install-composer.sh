@@ -1,17 +1,16 @@
 #!/bin/bash
 
-set -e # exit the script if any statement returns a non-true return value
+set -e
 
 log() {
   echo "[install-composer]  ${*}"
 }
 
 log "start"
-log_headline "install composer"
 sudo apt update -y
 
 log "install dependency packages"
-sudo apt install wget php-cli php-zip unzip curl
+sudo apt install php-cli php-zip unzip curl wget
 
 log "moving to temporary dir"
 pushd /tmp/
