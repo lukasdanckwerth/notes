@@ -25,12 +25,8 @@ IS_DO_APT_UPDATE=1
 
 log "start"
 
-if [ -z ${1+x} ]; then
+if [ ! -z ${1+x} ] && [[ "${1}" == "noupdate" ]]; then
   IS_DO_APT_UPDATE=1
-  echo "1 is unset"
-else
-  IS_DO_APT_UPDATE=0
-  echo "var is set to '${1}'"
 fi
 
 if [[ "${IS_DO_APT_UPDATE}" == "1" ]]; then
