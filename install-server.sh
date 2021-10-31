@@ -20,6 +20,8 @@ log_headline() {
   log "${*}"
 }
 
+IS_YES_NO="\033[32m(y/n)\033[0m";
+
 log "start"
 log "1: ${1}"
 log "*: ${*}"
@@ -38,10 +40,10 @@ else
 fi
 
 if which "composer" &>/dev/null; then
-  log "samba already installed: $(which "composer")"
+  log "composer already installed: $(which "composer")"
 else
   echo
-  read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) ${IS_YES_NO}? " IS_INSTALL_COMPOSER
   echo
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
