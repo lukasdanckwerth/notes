@@ -5,7 +5,7 @@ set -e # exit the script if any statement returns a non-true return value
 
 # functions
 log() {
-  echo "[install-new-server.sh]  ${*}"
+  echo "[install-server]  ${*}"
 }
 
 die() {
@@ -18,20 +18,17 @@ log_headline() {
   log "${*}"
 }
 
-question() {
-  echo && read -r -p "Do you want to continue (y/n)?" answer
-  echo "${answer}"
-}
-
-log_headline "RUN SCRIPT"
+log "start" && log ""
 
 if command -v "apache2" &>/dev/null; then
   echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
-  read -r -p "Do you want to continue (y/n)?" answerContinue
-  "${answerContinue}" == "y" || log "user aborted"
+  read -r -p "Do you want to continue (y/n)? " answerContinue
+  "${answerContinue}" == "y" || (log "user aborted" && exit 0)
 else
   log "apache2 not found on system"
 fi
+
+exit 0
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
@@ -120,6 +117,5 @@ fi
 echo
 read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " installSamba
 
-
-log_headline "successfully finished script"
+log "successfully finished script"
 exit 0

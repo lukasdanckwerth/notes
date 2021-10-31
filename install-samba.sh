@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-# set -x   # prints all commands
 set -e # exit the script if any statement returns a non-true return value
 
 # functions
 log() {
-  echo "[install-apache2.sh] ${*}"
+  echo "[install-samba] ${*}"
 }
 
 die() {
@@ -18,12 +17,7 @@ log_headline() {
   log "${*}"
 }
 
-question() {
-  echo && read -r -p "Do you want to continue (y/n)?" answer
-  echo "${answer}"
-}
-
-log_headline "RUN SCRIPT"
+log "start"
 
 if command -v "apache2" &>/dev/null; then
   echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
