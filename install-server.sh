@@ -48,6 +48,7 @@ download_and_execute_script() {
 }
 
 log "start"
+log ""
 
 if [[ "$*" == *--debug* ]]; then
   export INS_DEBUG=1 && log "enabled debug"
