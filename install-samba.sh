@@ -70,7 +70,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
 fi
 
 echo
-read -r -p "Do you want to set the $(bold "samba password") for the user $(bold "${USER}") (y/n)? " SET_PASSWORD
+read -r -p "Set $(bold "samba password") for the user $(bold "${USER}") (y/n)? " SET_PASSWORD
 if [[ "${SET_PASSWORD}" == "y" ]]; then
   sudo smbpasswd -a "${USER}"
 fi
