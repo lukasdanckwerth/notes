@@ -37,7 +37,10 @@ read -r -p "Do you want to replace the index.html $(bold "${IA_INDEX}") with the
 if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   log "downloading index.html"
 
-  INS_INDEX_TEMPORARY=$(temporary_file)
+  INS_INDEX_TEMPORARY="$(temporary_file)-index.html"
   log "INS_INDEX_TEMPORARY: ${INS_INDEX_TEMPORARY}"
+
+  curl "${IA_INDEX_URL}" -o "${INS_INDEX_TEMPORARY}"
+  cat "${INS_INDEX_TEMPORARY}"
 
 fi

@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=31
+INS_VERSION=32
 
 export INS_NAME="install-server"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
@@ -101,7 +101,8 @@ else
   fi
 fi
 
-log "removing working directory: ${INS_TEMP_DIR}"
+# remove working directory
 rm -rf "${INS_TEMP_DIR}"
 
+log ""
 log "finished"
