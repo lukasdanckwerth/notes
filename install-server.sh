@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=42
+INS_VERSION=43
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -75,7 +75,7 @@ if grep "postgresql" /etc/passwd &>/dev/null; then
   log "postgresql already installed."
 else
   echo
-  read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  read -r -p "Install $(tput bold)postgresql$(tput sgr0) $(green "(y/n)")? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     download_and_execute_script "install-postgresql.sh"
   fi
@@ -85,7 +85,7 @@ if which "composer" &>/dev/null; then
   log "composer ($(bold "$(which "composer")")) already installed"
 else
   echo
-  read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
+  read -r -p "Install $(tput bold)Composer$(tput sgr0) $(green "(y/n)")? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     download_and_execute_script "install-composer.sh"
   fi
@@ -95,7 +95,7 @@ if which "samba" &>/dev/null; then
   log "samba ($(bold "$(which "samba")")) already installed"
 else
   echo
-  read -r -p "Install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
+  read -r -p "Install $(tput bold)Samba$(tput sgr0) $(green "(y/n)")? " IS_INSTALL_SAMBA
   if [[ "${IS_INSTALL_SAMBA}" == "y" ]]; then
     download_and_execute_script "install-samba.sh"
   fi
