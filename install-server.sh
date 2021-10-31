@@ -23,8 +23,6 @@ log_headline() {
 IS_YES_NO="\033[32m(y/n)\033[0m";
 
 log "start"
-log "1: ${1}"
-log "*: ${*}"
 log "*: ${*}"
 
 exit 0
