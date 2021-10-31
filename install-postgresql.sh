@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # set -x   # prints all commands
 set -e # exit the script if any statement returns a non-true return value
