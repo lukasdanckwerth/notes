@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=21
+INS_VERSION=22
 
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
@@ -39,8 +39,8 @@ temporary_file() {
 download_and_execute_script() {
   local SCRIPT_NAME=${1}
   local SCRIPT_URL="${INS_REPOSITORY_URL}/${SCRIPT_NAME}"
-  LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
-  local LOCAL_SCRIPT_PATH
+  # shellcheck disable=SC2155
+  local LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
 
   curl "${SCRIPT_URL}" \
     --output "${LOCAL_SCRIPT_PATH}" \
