@@ -52,7 +52,6 @@ if [[ "${replaceConfig}" == "y" ]]; then
       log "couldn't move ${IS_SAMBA_CONFIG}"
       exit 1
     fi
-
   else
     log "couldn't load smb.conf ${IS_SAMBA_CONFIG}"
     exit 1
