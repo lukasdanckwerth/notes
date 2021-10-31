@@ -19,6 +19,10 @@ log_headline() {
   log "${*}"
 }
 
+bold() {
+  echo -e "$(tput bold)${*}$(tput sgr0)"
+}
+
 log "start"
 log "IS_USER_1: ${IS_USER_1}"
 log "IS_USER_2: ${IS_USER_2}"
@@ -43,7 +47,7 @@ else
   read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
     echo
-    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
+    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-postgresql.sh")" "noupdate"
   fi
 fi
 
@@ -58,7 +62,7 @@ else
   fi
 fi
 
-if which "sambaa" &>/dev/null; then
+if which "samba" &>/dev/null; then
   log "samba already installed: $(which "samba")"
 else
   echo
