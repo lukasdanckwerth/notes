@@ -47,7 +47,5 @@ git commit -m "version ${UV_NEW_VERSION}"
 git push
 
 echo
-log "upgrade from ${UV_CURRENT_VERSION} to ${UV_NEW_VERSION}"
-
-# print empty line on end
-echo ""
+log "new version ${UV_NEW_VERSION} (was ${UV_CURRENT_VERSION})"
+echo
