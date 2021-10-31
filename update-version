@@ -24,22 +24,23 @@ UV_SCRIPT="${UV_SCRIPT_DIR}/${UV_SCRIPT_NAME}"
 
 # receive current version
 UV_CURRENT_TAG=$(grep -E "${UV_REGEX_VERSION_TAG}" "${UV_SCRIPT}")
-if [[ "${UV_CURRENT_TAG}" == "" ]]; then
-  die "ERROR: can't receive version tag."
-fi
+log "current tag: ${UV_CURRENT_TAG}"
+[[ "${UV_CURRENT_TAG}" == "" ]] && die "ERROR: can't receive version tag."
+echo "${UV_CURRENT_TAG}" | wc
 
 UV_CURRENT_VERSION=$(echo "${UV_CURRENT_TAG}" | grep -o -E "${UV_REGEX_VERSION}")
-if [[ "${UV_CURRENT_VERSION}" == "" ]]; then
-  die "ERROR: can't receive version."
-fi
+log "current version: ${UV_CURRENT_VERSION}"
+[[ "${UV_CURRENT_VERSION}" == "" ]] && die "ERROR: can't receive version."
 
 # calculate next version
 UV_NEW_VERSION=$((UV_CURRENT_VERSION+1))
 UV_NEW_TAG="INS_VERSION=${UV_NEW_VERSION}"
 
-log "current tag: ${UV_CURRENT_TAG}"
-log "current version: ${UV_CURRENT_VERSION}"
+
 log "new version: ${UV_NEW_VERSION}"
 log "new tag: ${UV_NEW_TAG}"
 
+sed -n "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/gp" "${UV_SCRIPT}"
+
+# print empty line on end
 echo ""

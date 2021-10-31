@@ -5,6 +5,10 @@ set -e
 # next line will be replaced by `update-version` command
 INS_VERSION=1
 
+INS_VERSION=1
+
+INS_VERSION=1
+
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
 INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen)"
