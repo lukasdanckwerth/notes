@@ -3,7 +3,7 @@ set -u
 set -e
 
 log() {
-  echo "[install-composer]  ${*}"
+  echo -e "[install-composer]  ${*}"
 }
 
 log "start"

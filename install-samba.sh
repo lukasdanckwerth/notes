@@ -17,7 +17,8 @@ bold() {
 }
 
 log "start"
-log "logname: ${logname}"
+log "IS_USER_1: ${IS_USER_1}"
+log "IS_USER_2: ${IS_USER_2}"
 
 log "install packages"
 sudo apt-get install --assume-yes \
