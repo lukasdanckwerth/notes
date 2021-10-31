@@ -63,7 +63,7 @@ fi
 if which "apache2" &>/dev/null; then
   log "apache2 ($(bold "$(which "apache2")")) already installed"
 else
-  sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-apache2.sh")" "noupdate"
+  download_and_execute_script "install-apache2.sh"
 fi
 
 if grep "postgresql" /etc/passwd &>/dev/null; then
@@ -72,8 +72,7 @@ else
   echo
   read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
-    echo
-    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-postgresql.sh")" "noupdate"
+    download_and_execute_script "install-postgresql.sh"
   fi
 fi
 
@@ -83,19 +82,17 @@ else
   echo
   read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
-    echo
-    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
+    download_and_execute_script "install-composer.sh"
   fi
 fi
 
 if which "samba" &>/dev/null; then
-  log "samba already installed: $(bold "$(which "samba")")"
+  log "samba ($(bold "$(which "samba")")) already installed"
 else
   echo
   read -r -p "Install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
   if [[ "${IS_INSTALL_SAMBA}" == "y" ]]; then
-    echo
-    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-samba.sh")" "noupdate"
+    download_and_execute_script "install-samba.sh"
   fi
 fi
 
