@@ -18,6 +18,10 @@ log_headline() {
 }
 
 log_headline "install-apache2.sh"
+if command -v "apache2" &> /dev/null; then
+  echo "It seams like apache2 is already installed $(command -v "apache2")."
+  read -r -p "Do you want to continue (y/n)?" answerContinue
+fi
 
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 log "servername.conf: ${IA_SERVERNAME_FILE_PATH}"
@@ -34,7 +38,7 @@ sudo apt install vim apache2 php postgresql postgresql-contrib php-pgsql -y
 log_headline "CONFIGURE APACHE"
 if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
   sudo touch "${IA_SERVERNAME_FILE_PATH}"
-  echo "${IA_HOSTNAME}" >"${IA_SERVERNAME_FILE_PATH}"
+  echo "${IA_HOSTNAME}" > "${IA_SERVERNAME_FILE_PATH}"
   log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
 fi
 
