@@ -9,11 +9,11 @@ IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"
 
 log() {
-  echo "[install-samba]  ${*}"
+  echo -e "[install-samba]  ${*}"
 }
 
 bold() {
-  echo "$(tput bold)${*}$(tput sgr0)"
+  echo -e "$(tput bold)${*}$(tput sgr0)"
 }
 
 log "start"
