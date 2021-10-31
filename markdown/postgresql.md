@@ -4,7 +4,7 @@
 - [Database](#database)
 
 ## Users
-When installing postgreSQL the user __postgres__ is already created. To login use:
+When installing postgreSQL the user `postgres` is already created. To login use:
 ```shell
 $ sudo -i -u postgres
 ```
@@ -34,20 +34,25 @@ $ createuser --interactive
 ### Create new linux user
 > Note that first it's necessary to have a linux user for a database user and second you can't be logged in as `postgres` user for this action.
 ```shell
-$ sudo adduser sammy
+$ sudo adduser john
 
 # if you would like to set a password for the new user
-$ sudo passwd sammy 
+$ sudo passwd john
+
+# to start the postgres cli as user john use:
+$ sudo -u sammy psql [-d $DATABASE_NAME]
 ```
 
 ## Database
-To create a new pg database type:
+To create a new database named `john`:
 ```shell
-postgres@pc:~$ createuser --interactive
+# assuming you are logged in as postgres
+$ createdb sammy
 ```
 
 ### Create database
 As user `postgres` you type
 ```shell
+# assuming you are logged in as postgres
 postgres@pc:~$ createuser --interactive
 ```
