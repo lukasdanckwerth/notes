@@ -33,6 +33,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
   echo 'replaceConfig'
 fi
 
+
 echo
 read -r -p "Do you want to replace the config $(bold "${IA_APACHE_CONFIG}") with the default one from this script? The default config can't viewed at ${IA_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
