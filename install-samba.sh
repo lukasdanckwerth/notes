@@ -69,6 +69,7 @@ fi
 
 echo
 read -r -p "Set $(bold "samba password") for the user $(bold "${USER}") (y/n)? " SET_PASSWORD
+echo
 if [[ "${SET_PASSWORD}" == "y" ]]; then
   sudo smbpasswd -a "${USER}"
 fi
