@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=22
+INS_VERSION=23
 
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
@@ -52,8 +52,7 @@ download_and_execute_script() {
   . "${LOCAL_SCRIPT_PATH}"
 }
 
-log "start"
-log "version: ${INS_VERSION}"
+log "start (version: ${INS_VERSION})"
 
 if [[ "$*" == *--debug* ]]; then
   export INS_DEBUG=1 && log "enabled debug"

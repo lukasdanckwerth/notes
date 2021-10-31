@@ -32,11 +32,10 @@ if [[ "${INS_REPLACE_CONFIG}" == "y" ]]; then
   echo 'replaceConfig'
 fi
 
-
 echo
 read -r -p "Do you want to replace the index.html $(bold "${IA_INDEX}") with the default one from this script? The default index.html can't viewed at ${IA_INDEX_URL}. (y/n) " INS_REPLACE_INDEX
 if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
-  echo 'replaceConfig'
+  log "downloading index.html"
 fi
 
 env
