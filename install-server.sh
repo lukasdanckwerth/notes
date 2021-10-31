@@ -41,8 +41,8 @@ if grep "postgresql" /etc/passwd &>/dev/null; then
 else
   echo
   read -r -p "Install $(tput bold)postgresql$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
-  echo
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    echo
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
   fi
 fi
@@ -52,8 +52,8 @@ if which "composer" &>/dev/null; then
 else
   echo
   read -r -p "Install $(tput bold)Composer$(tput sgr0) (y/n)? " IS_INSTALL_COMPOSER
-  echo
   if [[ "${IS_INSTALL_COMPOSER}" == "y" ]]; then
+    echo
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-composer.sh")" "noupdate"
   fi
 fi
@@ -62,12 +62,11 @@ if which "sambaa" &>/dev/null; then
   log "samba already installed: $(which "samba")"
 else
   echo
-  read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
-  echo
+  read -r -p "Install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
   if [[ "${IS_INSTALL_SAMBA}" == "y" ]]; then
+    echo
     sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-samba.sh")" "noupdate"
   fi
 fi
 
 log "finished"
-exit 0
