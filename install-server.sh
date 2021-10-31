@@ -3,13 +3,12 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=26
+INS_VERSION=27
 
 export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
 INS_UUID=$(uuidgen);
-INS_TEMP_DIR="/tmp/${INS_NAME}-${INS_UUID: -10}"
-export INS_TEMP_DIR
+export INS_TEMP_DIR="/tmp/${INS_NAME}-${INS_UUID: -10}"
 export INS_USER=${SUDO_USER}
 export INS_DEBUG=0
 export INS_SKIP_UPDATE=0
