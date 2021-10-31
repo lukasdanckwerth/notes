@@ -49,7 +49,7 @@ log "postgresql status: $(sudo pg_isready)"
 log "restart postgresql"
 sudo systemctl restart postgresql
 
-read -r -p "Do you want to install pgadmin4 (y/n)? " answer
+read -r -p "Do you want to install $(tput bold)pgadmin4$(tput sgr0) (y/n)? " answer
 log "answer: ${answer}"
 
 if [[ "${answer}" == "y" ]]; then
@@ -76,7 +76,7 @@ else
   log "skip install pgadmin4"
 fi
 
-read -r -p "Do you want to install composer (y/n)?" installComposer
+read -r -p "Do you want to install $(tput bold)composer$(tput sgr0) (y/n)?" installComposer
 log "installComposer: ${installComposer}"
 
 if [[ "${installComposer}" -eq "yes" ]]; then
