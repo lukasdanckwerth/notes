@@ -33,7 +33,7 @@ else
   echo "var is set to '${1}'"
 fi
 
-if [[ "${IS_DO_APT_UPDATE}" == "0" ]]; then
+if [[ "${IS_DO_APT_UPDATE}" == "1" ]]; then
   log "running apt update"
   echo
   sudo apt update -y
