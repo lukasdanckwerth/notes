@@ -21,6 +21,7 @@ log_headline() {
 
 log "start"
 log "whoami: $(whoami)"
+log "1: ${1}"
 
 exit 0
 
