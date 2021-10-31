@@ -13,14 +13,20 @@ die() {
 }
 
 log_headline() {
+  echo ""
   log "==========================================="
   log "${*}"
 }
 
+question() {
+  echo && read -r -p "Do you want to continue (y/n)?" answer
+  echo "${answer}"
+}
+
 log_headline "RUN SCRIPT"
 
-if command -v "apache2" &> /dev/null; then
-  echo "It seams like apache2 is already installed $(command -v "apache2")."
+if command -v "apache2" &>/dev/null; then
+  echo & echo "It seams like $(tput bold)apache2$(tput sgr0) is already installed $(command -v "apache2")."
   read -r -p "Do you want to continue (y/n)?" answerContinue
 else
   log "apache2 not found on system"
@@ -41,7 +47,7 @@ sudo apt install vim apache2 php postgresql postgresql-contrib php-pgsql -y
 log_headline "CONFIGURE APACHE"
 if [[ ! -f "${IA_SERVERNAME_FILE_PATH}" ]]; then
   sudo touch "${IA_SERVERNAME_FILE_PATH}"
-  echo "${IA_HOSTNAME}" > "${IA_SERVERNAME_FILE_PATH}"
+  echo "${IA_HOSTNAME}" >"${IA_SERVERNAME_FILE_PATH}"
   log "created ${IA_SERVERNAME_FILE_PATH} with content '${IA_HOSTNAME}'"
 fi
 
@@ -56,10 +62,9 @@ log "postgresql status: $(sudo pg_isready)"
 log "restart postgresql"
 sudo systemctl restart postgresql
 
-read -r -p "Do you want to install $(tput bold)pgAdmin$(tput sgr0) (y/n)? " answer
-log "answer: ${answer}"
+read -r -p "Do you want to install $(tput bold)pgAdmin$(tput sgr0) (y/n)? " installPgAdmin
 
-if [[ "${answer}" == "y" ]]; then
+if [[ "${installPgAdmin}" == "y" ]]; then
   log_headline "will install pgadmin4"
   log "adding public key for pgadmin"
   curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
@@ -101,16 +106,16 @@ if [[ "${installComposer}" -eq "yes" ]]; then
 
   log "download installer"
   sudo mv composer.phar /usr/local/bin/composer
-
   popd
+
+  if [[ -f "/usr/local/bin/composer" ]]; then
+    log "successfully installed composer"
+  fi
 else
   log "skip install composer"
 fi
 
-echo -e """
-# successfully finished script                                #
-# =========================================================== #
-"""
+log_headline "successfully finished script"
 exit 0
 
 ServerName __YOUR_WEB_SITE__
