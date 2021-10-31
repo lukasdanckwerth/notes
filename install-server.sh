@@ -31,20 +31,14 @@ else
 fi
 
 
-#echo
-#read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) (y/n)? " installComposer
-#
-
-#if [[ "${installSamba}" == "y" ]]; then
-#  sudo /bin/bash -c "$(curl -fsSL ${IS_REPOSITORY_URL}install-samba.sh)"
-#fi
-
 if command -v "smb" &>/dev/null; then
   log "samba already installed"
 else
   echo
-  read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " installSamba
-  sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-samba.sh")" "noupdate"
+  read -r -p "Do you want to install $(tput bold)Samba$(tput sgr0) (y/n)? " IS_INSTALL_SAMBA
+  if [[ "${IS_INSTALL_SAMBA}" == "y" ]]; then
+    sudo /bin/bash -c "$(curl -fsSL "${IS_REPOSITORY_URL}/install-samba.sh")" "noupdate"
+  fi
 fi
 
 log "successfully finished script"
