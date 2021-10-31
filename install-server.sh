@@ -2,8 +2,10 @@
 set -u
 set -e
 
+export INS_NAME="install-server-automation"
 export INS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/install-apache2-server/main"
-export INS_TEMP_DIR="/tmp/install-apache2-server-$(uuidgen)"
+INS_TEMP_DIR="/tmp/${INS_NAME}-$(uuidgen)"
+export INS_TEMP_DIR
 export INS_USER=${SUDO_USER}
 export INS_DEBUG=0
 export INS_SKIP_UPDATE=0
