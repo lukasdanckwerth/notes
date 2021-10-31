@@ -17,7 +17,8 @@ log_headline() {
   log "${*}"
 }
 
-log_headline "install-apache2.sh"
+log_headline "RUN SCRIPT"
+
 if command -v "apache2" &> /dev/null; then
   echo "It seams like apache2 is already installed $(command -v "apache2")."
   read -r -p "Do you want to continue (y/n)?" answerContinue
@@ -53,7 +54,7 @@ log "postgresql status: $(sudo pg_isready)"
 log "restart postgresql"
 sudo systemctl restart postgresql
 
-read -r -p "Do you want to install $(tput bold)pgadmin4$(tput sgr0) (y/n)? " answer
+read -r -p "Do you want to install $(tput bold)pgAdmin$(tput sgr0) (y/n)? " answer
 log "answer: ${answer}"
 
 if [[ "${answer}" == "y" ]]; then
@@ -80,7 +81,7 @@ else
   log "skip install pgadmin4"
 fi
 
-read -r -p "Do you want to install $(tput bold)composer$(tput sgr0) (y/n)?" installComposer
+read -r -p "Do you want to install $(tput bold)Composer$(tput sgr0) (y/n)?" installComposer
 log "installComposer: ${installComposer}"
 
 if [[ "${installComposer}" -eq "yes" ]]; then
