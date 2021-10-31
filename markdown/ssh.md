@@ -14,5 +14,6 @@ $ ssh-keygen -t ed25519
 
 ### Copying public key to a server
 ```shell
+# assuming you created a ed25519 key
 $ ssh-copy-id -i ~/.ssh/ed25519 $USER@$HOST
 ```
