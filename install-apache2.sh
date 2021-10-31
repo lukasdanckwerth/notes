@@ -22,4 +22,11 @@ fi
 log "enable rewrite"
 sudo a2enmod rewrite
 
+echo
+read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
+
+if [[ "${replaceConfig}" == "y" ]]; then
+  echo 'replaceConfig'
+fi
+
 env
