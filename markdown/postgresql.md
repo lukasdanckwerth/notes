@@ -1,6 +1,8 @@
 # PostgreSQL
 
 - [Users](#users)
+  - [Create database user](#create-database-user)
+  - [Create linux user](#create-linux-user)
 - [Database](#database)
 
 ## Users
@@ -20,18 +22,28 @@ $ sudo -u postgres psql
 ```
 
 To quit the postgres cli use `\q`:
-```postgres
+```shell
 postgres=# \q
 ```
 
-### Create new database user
-To create a new pg database user type:
+### Create database user
+To create a new database user:
 ```shell
 # assuming you are logged in as postgres
 $ createuser --interactive
 ```
 
-### Create new linux user
+Use `psql` to change password for newly created database user.
+```shell
+$ psql
+# postgres=#
+```
+
+```shell
+postgres=# ALTER USER postgres WITH ENCRYPTED PASSWORD 'postgres';
+```
+
+### Create linux user
 > Note that first it's necessary to have a linux user for a database user and second you can't be logged in as `postgres` user for this action.
 ```shell
 $ sudo adduser john
@@ -40,14 +52,14 @@ $ sudo adduser john
 $ sudo passwd john
 
 # to start the postgres cli as user john use:
-$ sudo -u sammy psql [-d $DATABASE_NAME]
+$ sudo -u john psql [-d $DATABASE_NAME]
 ```
 
 ## Database
 To create a new database named `john`:
 ```shell
 # assuming you are logged in as postgres
-$ createdb sammy
+$ createdb john
 ```
 
 ### Create database
