@@ -22,4 +22,4 @@ fi
 log "enable rewrite"
 sudo a2enmod rewrite
 
-
+env
