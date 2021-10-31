@@ -46,12 +46,8 @@ download_and_execute_script() {
 
 log "start"
 
-log "creating temporary directory"
-log "IS_TEMP: ${IS_TEMP}"
+log "creating temporary directory: ${IS_TEMP}"
 mkdir -p "${IS_TEMP}"
-
-log "IS_USER_1: ${IS_USER_1}"
-log "IS_USER_2: ${IS_USER_2}"
 
 if [ ! -z ${1+x} ] && [[ "${1}" == "noupdate" ]]; then
   log "skipping apt update"
