@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=37
+INS_VERSION=38
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -58,11 +58,8 @@ ask_user() {
   fi
 }
 
+[[ "$*" == *--debug* ]] && export INS_DEBUG=1
 log "start (version: ${INS_VERSION})"
-
-if [[ "$*" == *--debug* ]]; then
-  export INS_DEBUG=1 && log "enabled debug: ${INS_DEBUG}"
-fi
 
 mkdir -p "${INS_TEMP_DIR}"
 
@@ -71,7 +68,7 @@ if ! [[ "$*" == *--no-update* ]]; then
   sudo apt update -y
 fi
 
-if which "apache2" &>/dev/null || [[ "${INS_DEBUG}" == "1" ]]; then
+if which "apache2" &>/dev/null && [[ "${INS_DEBUG}" == "0" ]]; then
   log "apache2 ($(bold "$(which "apache2")")) already installed"
 else
   download_and_execute_script "install-apache2.sh"
@@ -111,4 +108,4 @@ fi
 rm -rf "${INS_TEMP_DIR}"
 
 log ""
-log "finished"
+log "successfully finished"
