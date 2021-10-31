@@ -39,9 +39,9 @@ download_and_execute_script() {
     --silent \
     --show-error
 
-  log "ls -ls ${IS_TEMP}"
-  ls -la "${IS_TEMP}"
-
+  log "executing ${LOCAL_SCRIPT_PATH}"
+  # shellcheck disable=SC1090
+  . "${LOCAL_SCRIPT_PATH}"
 }
 
 log "start"
