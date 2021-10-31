@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=45
+INS_VERSION=46
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -31,7 +31,7 @@ bold() {
 }
 
 green() {
-  echo -e "$(tput setaf 1)${*}$(tput sgr0)"
+  echo -e "$(tput setaf 3)${*}$(tput sgr0)"
 }
 
 temporary_file() {

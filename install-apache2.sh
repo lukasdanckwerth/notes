@@ -50,6 +50,8 @@ if [[ "${INS_REPLACE_INDEX}" == "y" ]]; then
   curl "${IA_INDEX_URL}" -o "${INS_INDEX_TEMPORARY}" -s
   [[ -f "${INS_INDEX_TEMPORARY}" ]] || (log "ERROR: can't download index.html" && exit 1)
 
+  sed -i "" "s/___TITLE___/${IA_HOSTNAME}/g" "${INS_INDEX_TEMPORARY}"
+
   log "$(sudo rm -rfv "${IA_INDEX}")"
   log "$(sudo mv -v "${INS_INDEX_TEMPORARY}" "${IA_INDEX}")"
 fi
