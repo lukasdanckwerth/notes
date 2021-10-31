@@ -20,16 +20,26 @@ log_headline() {
   log "${*}"
 }
 
-IS_YES_NO="\033[32m(y/n)\033[0m";
+IS_YES_NO="\033[32m(y/n)\033[0m"
+IS_DO_APT_UPDATE=1
 
 log "start"
-log "*: ${*}"
 
-exit 0
+if [ -z ${1+x} ]; then
+  IS_DO_APT_UPDATE=1
+  echo "1 is unset"
+else
+  IS_DO_APT_UPDATE=0
+  echo "var is set to '${1}'"
+fi
 
-log_headline "sudo apt update -y"
-echo
-sudo apt update -y
+if [[ "${IS_DO_APT_UPDATE}" == "0" ]]; then
+  log "running apt update"
+  echo
+  sudo apt update -y
+else
+  log "skipping apt update"
+fi
 
 if which "apache2" &>/dev/null; then
   log "apache2 already installed $(which "apache2")"
