@@ -41,7 +41,8 @@ download_and_execute_script() {
     --silent \
     --show-error
 
-
+  log "cat ${LOCAL_SCRIPT_PATH}"
+  cat "${LOCAL_SCRIPT_PATH}"
 }
 
 log "start"
@@ -56,7 +57,7 @@ else
   sudo apt update -y
 fi
 
-if which "apache2" &>/dev/null; then
+if which "apache23" &>/dev/null; then
   log "apache2 ($(bold "$(which "apache2")")) already installed"
 else
   download_and_execute_script "install-apache2.sh"
