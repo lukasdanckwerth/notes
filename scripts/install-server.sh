@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=65
+INS_VERSION=66
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"
@@ -41,7 +41,7 @@ temporary_file() {
 
 download_and_execute_script() {
   local SCRIPT_NAME=${1}
-  local SCRIPT_URL="${INS_REPOSITORY_URL}/${SCRIPT_NAME}"
+  local SCRIPT_URL="${INS_REPOSITORY_URL}/scripts/${SCRIPT_NAME}"
   # shellcheck disable=SC2155
   local LOCAL_SCRIPT_PATH="$(temporary_file)-${SCRIPT_NAME}"
 

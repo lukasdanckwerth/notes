@@ -22,7 +22,7 @@ UV_REGEX_VERSION="[0-9]{1,20}$"
 # receive script
 UV_SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 UV_SCRIPT_NAME="install-server.sh"
-UV_SCRIPT="${UV_SCRIPT_DIR}/${UV_SCRIPT_NAME}"
+UV_SCRIPT="${UV_SCRIPT_DIR}/scripts/${UV_SCRIPT_NAME}"
 
 # validate script
 [[ -f "${UV_SCRIPT}" ]] || (die "ERROR: missing script at ${UV_SCRIPT}.")
