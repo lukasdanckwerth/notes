@@ -2,6 +2,7 @@
 
 ### Notes
 
+- [git](https://github.com/lukasdanckwerth/install-apache2-server/blob/main/markdown/git.md)
 - [ssh](https://github.com/lukasdanckwerth/install-apache2-server/blob/main/markdown/ssh.md)
 - [postgresql](https://github.com/lukasdanckwerth/install-apache2-server/blob/main/markdown/postgresql.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/install-apache2-server/blob/main/markdown/htaccess-htpasswd.md)
