@@ -3,6 +3,7 @@
 > Collection of common `git` commands and working steps.
 
 - [Create tag](#create-tag)
+- [Create branch](#create-branch)
 - [Remove branch](#remove-branch)
 
 ### Create tag
@@ -16,6 +17,21 @@ $ git tag -a v1.4 -m 'my version 1.4'
 
 # Push (all new) tags to remote server
 $ git push origin --tags
+```
+
+### Create branch
+
+```bash
+# create the branch
+$ git branch THE_BRANCH
+
+# switch to branch
+$ git checkout THE_BRANCH
+
+# ... or shorthand:
+$ git checkout -b THE_BRANCH
+
+#
 ```
 
 ### Remove branch
