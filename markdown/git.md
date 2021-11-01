@@ -31,18 +31,19 @@ $ git checkout THE_BRANCH
 # ... or shorthand:
 $ git checkout -b THE_BRANCH
 
-#
+# create branch on remote server
+$ git push origin THE_BRANCH
 ```
 
 ### Remove branch
 
 ```bash
 # To delete a local branch
-git branch -d THE_BRANCH
+$ git branch -d THE_BRANCH
 
-# To remove a remote branch (if you know what you are doing!)
-git push origin THE_BRANCH
+# To remove a remote branch (be careful!)
+$ git push origin THE_BRANCH
 
 # or simply use the new syntax (v1.7.0)
-git push origin --delete THE_BRANCH
+$ git push origin --delete THE_BRANCH
 ```
