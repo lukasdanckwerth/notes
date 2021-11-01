@@ -38,10 +38,10 @@ Require valid-user
 
 ```bash
 <Files SecretFile.php>
-AuthName "Dialog prompt"
-AuthType Basic
-AuthUserFile /absolute/path/to/your/.htpasswd
-Require valid-user
+    AuthName "Dialog prompt"
+    AuthType Basic
+    AuthUserFile /absolute/path/to/your/.htpasswd
+    Require valid-user
 </Files>
 ```
 
@@ -49,9 +49,9 @@ Require valid-user
 
 ```bash
 <FilesMatch "^(SecretFile|OtherFile).php$">
-AuthName "Dialog prompt"
-AuthType Basic
-AuthUserFile /absolute/path/to/your/.htpasswd
-Require valid-user
+    AuthName "Dialog prompt"
+    AuthType Basic
+    AuthUserFile /absolute/path/to/your/.htpasswd
+    Require valid-user
 </FilesMatch>
 ```
