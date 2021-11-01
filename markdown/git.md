@@ -47,3 +47,9 @@ $ git push origin THE_BRANCH
 # or simply use the new syntax (v1.7.0)
 $ git push origin --delete THE_BRANCH
 ```
+
+### Set / change URL
+
+```bash
+$ git remote set-url origin NEW_REPOSITORY_URL
+```
