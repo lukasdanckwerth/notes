@@ -7,7 +7,7 @@
 - [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/markdown/postgresql.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/markdown/htaccess-htpasswd.md)
 
-## Install Scripts
+## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
 
 ##### Install apache2, php, postgresql etc. ([`install-server.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
 
