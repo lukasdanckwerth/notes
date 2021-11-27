@@ -10,7 +10,7 @@ do the following tasks:
   - replace your ssmtp.config (if you want to)
   - set a samba password for current user (if you want to)
 "
-read -r -p "Do you want to proceed?s  (y/n)?" INSTALL_CONTROL
+read -r -p "Do you want to proceed? (y/n)? " INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
@@ -84,10 +84,8 @@ if [[ "${replaceConfig}" == "y" ]]; then
   fi
 fi
 
-INS_USER=${SUDO_USER}
-echo
-read -r -p "Set $(bold "samba password") for the user $(bold "${INS_USER}") (y/n)? " SET_PASSWORD
+read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
 echo
 if [[ "${SET_PASSWORD}" == "y" ]]; then
-  sudo smbpasswd -a "${INS_USER}"
+  sudo vim "${IS_SSMTP_CONFIG}"
 fi
