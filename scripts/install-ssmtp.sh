@@ -9,10 +9,8 @@ do the following tasks:
   - install $(tput setab 5)ssmtp$(tput sgr0) packages
   - replace your ssmtp.config (if you want to)
   - set a samba password for current user (if you want to)
-
-Do you want to proceed? (y/n)?
 "
-read -r -p "" INSTALL_CONTROL
+read -r -p "Do you want to proceed?s  (y/n)?" INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
