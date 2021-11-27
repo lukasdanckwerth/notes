@@ -12,7 +12,7 @@ do the following tasks:
 
 Do you want to proceed? (y/n)?
 "
-read -r -p "" INSTALL_CONTROL
+read -r INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
@@ -37,7 +37,14 @@ sudo apt-get install --assume-yes \
   samba \
   samba-common-bin
 
-echo
+log "contents of ${IS_SAMBA_CONFIG}"
+cat "${IS_SAMBA_CONFIG}"
+
+log "download smb.conf to ${IS_SAMBA_CONFIG_TEMP}"
+curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SAMBA_CONFIG_TEMP}"
+log "contents of ${IS_SAMBA_CONFIG_TEMP}"
+cat "${IS_SAMBA_CONFIG}"
+
 read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
 if [[ "${replaceConfig}" == "y" ]]; then

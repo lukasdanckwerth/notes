@@ -15,9 +15,10 @@
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
 ```
 
+##### Install Samba
 
 ```shell
-sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
 ```
 
 ### Multipass Development
