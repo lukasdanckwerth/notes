@@ -6,7 +6,7 @@ echo -e "
 Are you sure you want to install $(tput bold)Samba$(tput sgr0)? This will
 do the following tasks:
 
-  - install $(tput bold)samba$(tput sgr0) and $(tput bold)samba-common-bin$(tput sgr0) packages
+  - install $(tput setab 5)samba$(tput sgr0) and $(tput setab 5)samba-common-bin$(tput sgr0) packages
   - replace your smb.config (if you want to)
   - set a samba password for current user (if you want to)
 
@@ -47,6 +47,7 @@ cat "${IS_SAMBA_CONFIG}"
 
 read -r -p "Do you want to replace the config $(bold "${IS_SAMBA_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
+# replace smb.conf
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download smb.conf to ${IS_SAMBA_CONFIG_TEMP}"
   curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SAMBA_CONFIG_TEMP}"
