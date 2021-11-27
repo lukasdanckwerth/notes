@@ -7,7 +7,20 @@
 - [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/markdown/postgresql.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/markdown/htaccess-htpasswd.md)
 
-### Development
+## Install Scripts
+
+##### Install apache2, php, postgresql etc. ([`install-server.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
+
+```shell
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
+```
+
+
+```shell
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
+```
+
+### Multipass Development
 
 ##### Create ubuntu instance with [multipass](https://multipass.run)
 
@@ -19,10 +32,4 @@ multipass launch -n development-server -d 7G -c 2 -m 2G
 
 ```shell
 multipass shell development-server
-```
-
-##### Install apache2, php, postgresql etc. ([`install-server.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
-
-```shell
-sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
 ```
