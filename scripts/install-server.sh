@@ -3,7 +3,7 @@ set -u
 set -e
 
 # next line will be replaced by `update-version` command
-INS_VERSION=80
+INS_VERSION=81
 
 export INS_NAME="install-server"
 export INS_SEPARATOR="--------------------------------------"

@@ -7,7 +7,7 @@ Are you sure you want to install $(tput bold)ssmtp$(tput sgr0)? This will
 do the following tasks:
 
   - install $(tput setab 5)ssmtp$(tput sgr0) packages
-  - replace your smb.config (if you want to)
+  - replace your ssmtp.config (if you want to)
   - set a samba password for current user (if you want to)
 
 Do you want to proceed? (y/n)?
@@ -35,8 +35,9 @@ log "install packages"
 log "contents of ${IS_SSMTP_CONFIG}"
 cat "${IS_SSMTP_CONFIG}"
 
-log "download smb.conf to ${IS_SSMTP_CONFIG_TEMP}"
+log "download ssmtp.conf to ${IS_SSMTP_CONFIG_TEMP}"
 curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SSMTP_CONFIG_TEMP}"
+
 log "contents of ${IS_SSMTP_CONFIG_TEMP}"
 cat "${IS_SSMTP_CONFIG}"
 
