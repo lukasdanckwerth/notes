@@ -2,15 +2,15 @@
 set -u
 set -e
 
+echo -e "Are you sure you want to install $(tput bold)Samba$(tput sgr0) (y/n)?"
+read -r -p "" INSTALL_CONTROL
+[[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
+
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
 IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL}/smb/smb.conf"
 IS_CONTENT_DIR="/var/www/content"
 IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"
-
-read -r -p "Are you sure you want to install samba (y/n)? " INSTALL_CONTROL
-
-[[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 log() {
   echo -e "[install-samba]  ${*}"
