@@ -11,7 +11,7 @@ do the following tasks:
   - set a samba password for current user (if you want to)
 "
 read -r -p "Do you want to proceed? (y/n)? " INSTALL_CONTROL
-[[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
+[[ "${INSTALL_CONTROL}" == "y" ]] || exit 0
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
 IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL}/assets/ssmtp/ssmtp.conf"
@@ -28,45 +28,37 @@ bold() {
 
 log "start"
 log "install packages"
-sudo apt-get install --assume-yes ssmtp mailutils
+# sudo apt-get install --assume-yes ssmtp mailutils
 
 read -r -p "Do you want to replace the config $(bold "${IS_SSMTP_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
-# replace smb.conf
+# replace ssmtp.conf
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download ssmtp.conf to ${IS_SSMTP_CONFIG_TEMP}"
   curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SSMTP_CONFIG_TEMP}"
 
-  if [[ -f "${IS_SSMTP_CONFIG_TEMP}" ]]; then
+  [[ -f "${IS_SSMTP_CONFIG_TEMP}" ]] || (log "couldn't load ssmtp.conf ${IS_SSMTP_CONFIG}" && exit 1)
 
-    log "removing old config ${IS_SSMTP_CONFIG}"
-    sudo rm -rf "${IS_SSMTP_CONFIG}"
+  log "removing old config ${IS_SSMTP_CONFIG}"
+  sudo rm -rf "${IS_SSMTP_CONFIG}"
 
-    log "moving new config from ${IS_SSMTP_CONFIG_TEMP} to ${IS_SSMTP_CONFIG}"
-    sudo mv "${IS_SSMTP_CONFIG_TEMP}" "${IS_SSMTP_CONFIG}"
+  log "moving new config from ${IS_SSMTP_CONFIG_TEMP} to ${IS_SSMTP_CONFIG}"
+  sudo mv "${IS_SSMTP_CONFIG_TEMP}" "${IS_SSMTP_CONFIG}"
 
-    if [[ -f "${IS_SSMTP_CONFIG}" ]]; then
+  [[ -f "${IS_SSMTP_CONFIG}" ]] || (log "couldn't move ${IS_SSMTP_CONFIG}" && exit 1)
 
-      log "${IS_SSMTP_CONFIG} file"
-      sudo ls -la "${IS_SSMTP_CONFIG}"
+  log "${IS_SSMTP_CONFIG} file"
+  sudo ls -la "${IS_SSMTP_CONFIG}"
 
-      log "${IS_SSMTP_CONFIG} content"
-      log ""
-      sudo cat "${IS_SSMTP_CONFIG}"
-      log ""
+  log "${IS_SSMTP_CONFIG} content"
+  log ""
+  sudo cat "${IS_SSMTP_CONFIG}"
+  log ""
 
-    else
-      log "couldn't move ${IS_SSMTP_CONFIG}"
-      exit 1
-    fi
-  else
-    log "couldn't load ssmtp.conf ${IS_SSMTP_CONFIG}"
-    exit 1
+else
+  read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
+  echo
+  if [[ "${SET_PASSWORD}" == "y" ]]; then
+    sudo vim "${IS_SSMTP_CONFIG}"
   fi
-fi
-
-read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
-echo
-if [[ "${SET_PASSWORD}" == "y" ]]; then
-  sudo vim "${IS_SSMTP_CONFIG}"
 fi
