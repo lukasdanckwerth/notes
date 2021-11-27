@@ -5,9 +5,9 @@ set -e
 IA_SERVERNAME_FILE_PATH="/etc/apache2/conf-available/servername.conf"
 IA_HOSTNAME=$(hostname)
 IA_APACHE_CONFIG="/etc/apache2/apache2.conf"
-IA_APACHE_CONFIG_URL="${INS_REPOSITORY_URL}/apache2/apache.conf"
+IA_APACHE_CONFIG_URL="${INS_REPOSITORY_URL}/assets/apache2/apache.conf"
 IA_INDEX="/var/www/html/index.html"
-IA_INDEX_URL="${INS_REPOSITORY_URL}/apache2/index.html"
+IA_INDEX_URL="${INS_REPOSITORY_URL}/assets/apache2/index.html"
 
 log() {
   echo "[install-apache2]  ${*}"
