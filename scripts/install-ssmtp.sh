@@ -46,7 +46,7 @@ exit 0
 
 # replace smb.conf
 if [[ "${replaceConfig}" == "y" ]]; then
-  log "download smb.conf to ${IS_SSMTP_CONFIG_TEMP}"
+  log "download ssmtp.conf to ${IS_SSMTP_CONFIG_TEMP}"
   curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SSMTP_CONFIG_TEMP}"
 
   if [[ -f "${IS_SSMTP_CONFIG_TEMP}" ]]; then
@@ -72,15 +72,8 @@ if [[ "${replaceConfig}" == "y" ]]; then
       exit 1
     fi
   else
-    log "couldn't load smb.conf ${IS_SSMTP_CONFIG}"
+    log "couldn't load ssmtp.conf ${IS_SSMTP_CONFIG}"
     exit 1
-  fi
-
-  if [[ ! -d "${IS_CONTENT_DIR}" ]]; then
-    log "creating directory ${IS_CONTENT_DIR}"
-    sudo mkdir -p "${IS_CONTENT_DIR}"
-  else
-    log "directory ${IS_CONTENT_DIR} already existing"
   fi
 fi
 
