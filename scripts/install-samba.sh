@@ -16,7 +16,7 @@ read -r -p INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
-IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL}/smb/smb.conf"
+IS_DEFAULT_CONFIG_URL="${IS_REPOSITORY_URL}/assets/smb/smb.conf"
 IS_CONTENT_DIR="/var/www/content"
 IS_SAMBA_CONFIG="/etc/samba/smb.conf"
 IS_SAMBA_CONFIG_TEMP="/tmp/install-samba.sh-smb.conf"

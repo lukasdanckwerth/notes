@@ -2,10 +2,10 @@
 
 ### Notes
 
-- [git](https://github.com/lukasdanckwerth/notes/blob/main/markdown/git.md)
-- [ssh](https://github.com/lukasdanckwerth/notes/blob/main/markdown/ssh.md)
-- [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/markdown/postgresql.md)
-- [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/markdown/htaccess-htpasswd.md)
+- [git](https://github.com/lukasdanckwerth/notes/blob/main/notes/git.md)
+- [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)
+- [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/notes/postgresql.md)
+- [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/notes/htaccess-htpasswd.md)
 
 ## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
 
