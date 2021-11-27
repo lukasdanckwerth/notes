@@ -42,6 +42,9 @@ cat "${IS_SSMTP_CONFIG}"
 
 read -r -p "Do you want to replace the config $(bold "${IS_SSMTP_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
 
+
+exit 0
+
 # replace smb.conf
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download smb.conf to ${IS_SSMTP_CONFIG_TEMP}"
