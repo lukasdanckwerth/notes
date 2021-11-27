@@ -21,6 +21,12 @@ sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwert
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
 ```
 
+##### Install ssmtp ([`install-ssmtp.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh))
+
+```shell
+sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-ssmtp.sh)"
+```
+
 ### Multipass Development
 
 ##### Create ubuntu instance with [multipass](https://multipass.run)
