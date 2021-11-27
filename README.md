@@ -15,7 +15,7 @@
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
 ```
 
-##### Install Samba
+##### Install Samba ([`install-samba.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-samba.sh))
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
