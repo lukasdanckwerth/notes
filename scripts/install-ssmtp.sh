@@ -77,6 +77,17 @@ if [[ "${replaceConfig}" == "y" ]]; then
     read -r -p "Repeat password (again): " SM_PASSWORD_2
   done
 
+  echo "mailhub:   ${SM_MAILHUB}"
+  echo "mail:      ${SM_MAIL}"
+  echo "password:  ****"
+  read -r -p "Is this correct (y/n)? " IS_DATA_CORRECT
+
+  [[ "${IS_DATA_CORRECT}" == "y" ]] || exit 0
+
+  sed -i "s/__MAILHUB__/${SM_MAILHUB}/g" "${IS_SSMTP_CONFIG}"
+  sed -i "s/__MAIL__/${SM_MAIL}/g" "${IS_SSMTP_CONFIG}"
+  sed -i "s/__PASSWORD__/${SM_PASSWORD_1}/g" "${IS_SSMTP_CONFIG}"
+
 else
   read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
   echo
