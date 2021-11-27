@@ -28,21 +28,9 @@ bold() {
 
 log "start"
 log "install packages"
-# sudo apt-get install --assume-yes ssmtp
-
-log "contents of ${IS_SSMTP_CONFIG}"
-cat "${IS_SSMTP_CONFIG}"
-
-log "download ssmtp.conf to ${IS_SSMTP_CONFIG_TEMP}"
-curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SSMTP_CONFIG_TEMP}"
-
-log "contents of ${IS_SSMTP_CONFIG_TEMP}"
-cat "${IS_SSMTP_CONFIG}"
+sudo apt-get install --assume-yes ssmtp mailutils
 
 read -r -p "Do you want to replace the config $(bold "${IS_SSMTP_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
-
-
-exit 0
 
 # replace smb.conf
 if [[ "${replaceConfig}" == "y" ]]; then
