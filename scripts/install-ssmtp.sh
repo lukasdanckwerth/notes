@@ -26,6 +26,8 @@ bold() {
   echo -e "$(tput bold)${*}$(tput sgr0)"
 }
 
+
+
 log "start"
 log "install packages"
 # sudo apt-get install --assume-yes ssmtp mailutils
@@ -54,6 +56,24 @@ if [[ "${replaceConfig}" == "y" ]]; then
   log ""
   sudo cat "${IS_SSMTP_CONFIG}"
   log ""
+
+  echo -e "
+  Please provide a mailhub.
+
+  - GMX mail.gmx.net:465
+  "
+  read -r -p "Enter mailhub: " SM_MAILHUB
+  read -r -p "Enter mail adress: " SM_MAIL
+
+  SM_PASSWORD_1="1"
+  SM_PASSWORD_2="2"
+
+  read -r -p "Enter password: " SM_PASSWORD_1
+  read -r -p "Repeat password (again): " SM_PASSWORD_2
+
+  while [[ ! "${SM_PASSWORD_1}" == "${SM_PASSWORD_1}" ]] ; do
+      
+  done
 
 else
   read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
