@@ -12,7 +12,7 @@ do the following tasks:
 
 Do you want to proceed? (y/n)?
 "
-read -r INSTALL_CONTROL
+read -r -p INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
 IS_REPOSITORY_URL="https://raw.githubusercontent.com/lukasdanckwerth/notes/main"
@@ -30,8 +30,6 @@ bold() {
 }
 
 log "start"
-log "INS_USER: ${INS_USER}"
-
 log "install packages"
 sudo apt-get install --assume-yes \
   samba \
@@ -87,6 +85,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
   fi
 fi
 
+INS_USER=${SUDO_USER}
 echo
 read -r -p "Set $(bold "samba password") for the user $(bold "${INS_USER}") (y/n)? " SET_PASSWORD
 echo
