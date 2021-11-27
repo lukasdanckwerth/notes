@@ -2,7 +2,16 @@
 set -u
 set -e
 
-echo -e "Are you sure you want to install $(tput bold)Samba$(tput sgr0) (y/n)?"
+echo -e "
+Are you sure you want to install $(tput bold)Samba$(tput sgr0)? This will
+do the following tasks:
+
+  - install $(tput bold)samba$(tput sgr0) and $(tput bold)samba-common-bin$(tput sgr0) packages
+  - replace your smb.config (if you want to)
+  - set a samba password for current user (if you want to)
+
+Do you want to proceed? (y/n)?
+"
 read -r -p "" INSTALL_CONTROL
 [[ "${INSTALL_CONTROL}" == "y" ]] || exit 0;
 
