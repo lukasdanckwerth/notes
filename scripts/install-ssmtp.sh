@@ -26,20 +26,24 @@ bold() {
   echo -e "$(tput bold)${*}$(tput sgr0)"
 }
 
-
+die() {
+  log "$(tput setaf 9)ERROR: ${*} $(tput sgr0)" && exit 1
+}
 
 log "start"
 log "install packages"
-# sudo apt-get install --assume-yes ssmtp mailutils
+sudo apt-get install --assume-yes ssmtp mailutils
 
-read -r -p "Do you want to replace the config $(bold "${IS_SSMTP_CONFIG}") with the default one from this script? The default config can't viewed at ${IS_DEFAULT_CONFIG_URL}. (y/n) " replaceConfig
+[[ -d "/etc/ssmtp" ]] || die "directory /etc/ssmtp not existing."
+
+read -r -p "Do you want to run the wizard? (y/n) " replaceConfig
 
 # replace ssmtp.conf
 if [[ "${replaceConfig}" == "y" ]]; then
   log "download ssmtp.conf to ${IS_SSMTP_CONFIG_TEMP}"
   curl "${IS_DEFAULT_CONFIG_URL}" -o "${IS_SSMTP_CONFIG_TEMP}"
 
-  [[ -f "${IS_SSMTP_CONFIG_TEMP}" ]] || (log "couldn't load ssmtp.conf ${IS_SSMTP_CONFIG}" && exit 1)
+  [[ -f "${IS_SSMTP_CONFIG_TEMP}" ]] || die "couldn't load ssmtp.conf ${IS_SSMTP_CONFIG}"
 
   log "removing old config ${IS_SSMTP_CONFIG}"
   sudo rm -rf "${IS_SSMTP_CONFIG}"
@@ -47,7 +51,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
   log "moving new config from ${IS_SSMTP_CONFIG_TEMP} to ${IS_SSMTP_CONFIG}"
   sudo mv "${IS_SSMTP_CONFIG_TEMP}" "${IS_SSMTP_CONFIG}"
 
-  [[ -f "${IS_SSMTP_CONFIG}" ]] || (log "couldn't move ${IS_SSMTP_CONFIG}" && exit 1)
+  [[ -f "${IS_SSMTP_CONFIG}" ]] || die "couldn't move ${IS_SSMTP_CONFIG}"
 
   log "${IS_SSMTP_CONFIG} file"
   sudo ls -la "${IS_SSMTP_CONFIG}"
@@ -68,11 +72,9 @@ if [[ "${replaceConfig}" == "y" ]]; then
   SM_PASSWORD_1="1"
   SM_PASSWORD_2="2"
 
-  read -r -p "Enter password: " SM_PASSWORD_1
-  read -r -p "Repeat password (again): " SM_PASSWORD_2
-
-  while [[ ! "${SM_PASSWORD_1}" == "${SM_PASSWORD_1}" ]] ; do
-      
+  while [[ ! "${SM_PASSWORD_1}" == "${SM_PASSWORD_1}" ]]; do
+    read -r -p "Enter password: " SM_PASSWORD_1
+    read -r -p "Repeat password (again): " SM_PASSWORD_2
   done
 
 else

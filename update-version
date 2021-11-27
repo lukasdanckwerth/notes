@@ -26,6 +26,7 @@ UV_SCRIPT="${UV_SCRIPT_DIR}/scripts/${UV_SCRIPT_NAME}"
 
 # validate script
 [[ -f "${UV_SCRIPT}" ]] || (die "ERROR: missing script at ${UV_SCRIPT}.")
+echo "script: ${UV_SCRIPT}"
 
 # receive current version
 UV_CURRENT_TAG=$(grep -E "${UV_REGEX_VERSION_TAG}" "${UV_SCRIPT}")
@@ -40,15 +41,15 @@ UV_CURRENT_VERSION=$(echo "${UV_CURRENT_TAG}" | grep -o -E "${UV_REGEX_VERSION}"
 UV_NEW_VERSION=$((UV_CURRENT_VERSION + 1))
 UV_NEW_TAG="INS_VERSION=${UV_NEW_VERSION}"
 
-# iterate
-
+echo "current: ${UV_CURRENT_TAG}"
+echo "new: ${UV_NEW_TAG}"
 
 # dry sed run
 UV_CHANGES=$(sed -n "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/gp" "${UV_SCRIPT}")
 [[ "${UV_NEW_TAG}" == "${UV_CHANGES}" ]] || die "ERROR: changes not as expected. expected: '${UV_NEW_TAG}' after change: '${UV_CHANGES}'"
 
 # wet sed run
-sed -i "" "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/g" "${UV_SCRIPT}"
+sed -i "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/g" "${UV_SCRIPT}"
 
 git add .
 git commit -m "version ${UV_NEW_VERSION}"
