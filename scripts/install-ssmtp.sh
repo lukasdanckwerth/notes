@@ -34,9 +34,6 @@ IS_SSMTP_CONFIG_TEMP="/tmp/install-ssmtp.sh-ssmtp.conf"
 
 IS_SSMTP_REVALIASES="/etc/ssmtp/revaliases"
 
-env
-exit 0
-
 log "start"
 log "install packages"
 sudo apt-get install --assume-yes ssmtp mailutils
