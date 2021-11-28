@@ -82,11 +82,14 @@ if [[ "${replaceConfig}" == "y" ]]; then
     read -s -r -p "Enter password: " SM_PASSWORD_1
     echo
     read -s -r -p "Repeat password (again): " SM_PASSWORD_2
+    echo
   done
+
+  SM_PASSWORD_LENGTH=$(echo "${SM_PASSWORD_1}" | wc -c | xargs)
 
   echo "mailhub:   ${SM_MAILHUB}"
   echo "mail:      ${SM_MAIL}"
-  echo "password:  $(echo "${SM_PASSWORD_1}" | wc -c | xargs) characters"
+  echo "password:  ${SM_PASSWORD_LENGTH} characters"
   read -r -p "Is this correct (y/n)? " IS_DATA_CORRECT
 
   [[ "${IS_DATA_CORRECT}" == "y" ]] || exit 0
@@ -106,6 +109,26 @@ if [[ "${replaceConfig}" == "y" ]]; then
   IS_SUDO_USER=$(SUDO_USER)
   read -r -p "Use newly configured mail account for $(bold "${IS_SUDO_USER}") (y/n)? " IS_USE_MAIL_USER
   [[ "${IS_USE_MAIL_USER}" == "y" ]] && echo "${IS_SUDO_USER}:${SM_MAIL}:${SM_MAILHUB}" >> ${IS_SSMTP_REVALIASES}
+
+  read -r -p "Send test mail (y/n)? " IS_SEND_TEST_MAIL
+  [[ "${IS_SEND_TEST_MAIL}" == "y" ]] || exit 0
+
+  read -r -p "Receiver: " IS_SEND_TEST_MAIL_RECEIVER
+
+  IS_HOSTNAME=$(hostname)
+  IS_MAIL_SUBJECT="Successfully installed ssmtp on ${IS_HOSTNAME}"
+  IS_MAIL_CONTENT="
+Test mail from ${IS_HOSTNAME}.
+
+Mailhub:  ${SM_MAILHUB}
+Mail:     ${SM_MAIL}
+Password: ${SM_PASSWORD_LENGTH} characters
+
+Mail was automatically sent through install-ssmtp.sh script.
+Link: ${IS_REPOSITORY_URL}
+"
+
+  echo "${IS_MAIL_CONTENT}" | mail -s "${IS_MAIL_SUBJECT}" "${IS_SEND_TEST_MAIL_RECEIVER}"
 
 else
   read -r -p "Do you want to edit the ssmtp.conf right now (y/n)? " SET_PASSWORD
