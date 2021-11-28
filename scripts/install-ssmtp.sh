@@ -107,7 +107,7 @@ if [[ "${replaceConfig}" == "y" ]]; then
   read -r -p "Use newly configured mail account for $(bold "root") (y/n)? " IS_USE_MAIL_ROOT
   [[ "${IS_USE_MAIL_ROOT}" == "y" ]] && echo "root:${SM_MAIL}:${SM_MAILHUB}" >> ${IS_SSMTP_REVALIASES}
 
-  IS_SUDO_USER=$(SUDO_USER)
+  IS_SUDO_USER="${SUDO_USER}"
   read -r -p "Use newly configured mail account for $(bold "${IS_SUDO_USER}") (y/n)? " IS_USE_MAIL_USER
   [[ "${IS_USE_MAIL_USER}" == "y" ]] && echo "${IS_SUDO_USER}:${SM_MAIL}:${SM_MAILHUB}" >> ${IS_SSMTP_REVALIASES}
 
