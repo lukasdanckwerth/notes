@@ -35,3 +35,28 @@ SendEnv LANG LC_*
 ```shell
 sudo apt-get install ffmpeg
 ```
+
+## Set date
+
+#### Set timezone
+
+```shell
+sudo dpkg-reconfigure tzdata
+```
+
+#### Set timezone manually
+
+```shell
+# list timezones
+timedatectl list-timezones
+
+# set timezone
+sudo timedatectl set-timezone Europe/Berlin
+```
+
+#### Enable `timesyncd`
+
+```shell
+sudo timedatectl set-ntp on
+```
+
