@@ -18,4 +18,7 @@ $ ssh-keygen -t ed25519
 ```shell
 # assuming you created a ed25519 key
 $ ssh-copy-id -i ~/.ssh/ed25519 $USER@$HOST
+
+# for RaspberryPi on iMac
+$ ssh-copy-id -i ~/.ssh/id_raspberrypis pi@$HOST
 ```
