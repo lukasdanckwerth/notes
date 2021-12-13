@@ -22,7 +22,7 @@ sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwert
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
 ```
 
-### Install ssmtp [🔗](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh)
+### Install ssmtp [📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh)
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-ssmtp.sh)"
