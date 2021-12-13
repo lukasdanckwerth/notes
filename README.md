@@ -1,6 +1,4 @@
-# install-server
-
-### Notes
+# notes
 
 - [git](https://github.com/lukasdanckwerth/notes/blob/main/notes/git.md)
 - [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)

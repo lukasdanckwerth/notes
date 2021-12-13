@@ -49,7 +49,7 @@ UV_CHANGES=$(sed -n "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/gp" "${UV_SCRIPT}")
 [[ "${UV_NEW_TAG}" == "${UV_CHANGES}" ]] || die "ERROR: changes not as expected. expected: '${UV_NEW_TAG}' after change: '${UV_CHANGES}'"
 
 # wet sed run
-sed -i "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/g" "${UV_SCRIPT}"
+sed -i "" "s/${UV_CURRENT_TAG}/${UV_NEW_TAG}/g" "${UV_SCRIPT}"
 
 git add .
 git commit -m "version ${UV_NEW_VERSION}"
