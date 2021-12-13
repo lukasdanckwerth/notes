@@ -7,9 +7,9 @@ set -e
 # VARS
 
 CC_DEBUG=0
-CC_PREFIX="[cc]  "
-CC_GIT_REPO="https://github.com/lukasdanckwerth/bash-command.git"
-CC_GIT_COMMAND_FILE="https://raw.githubusercontent.com/lukasdanckwerth/bash-command/main/command"
+CC_PREFIX=""
+CC_GIT_ASSETS="https://raw.githubusercontent.com/lukasdanckwerth/notes/main/assets"
+CC_GIT_COMMAND_FILE="${CC_GIT_ASSETS}/create-command/command"
 
 if [[ "$*" == *-y* ]]; then CC_DEBUG=1; fi
 
@@ -29,7 +29,7 @@ die() {
 }
 
 die_error() {
-    log "" && log "  ERROR" && die "  ${*}\n"
+    log "" && log "  $(emph "ERROR")" && die "  ${*}\n"
 }
 
 ask() {
@@ -67,7 +67,7 @@ CC_CONTROL=$(ask "Is this correct $(emph "(y/n)")?")
 [[ "${CC_CONTROL}" == "y" ]] || die "User arborted."
 
 if [[ -d "${CC_PROJECT_DIR}" && "${CC_DEBUG}" == "0" ]]; then
-    die_error "Directory ${CC_PROJECT_DIR} already existing."
+    die_error "Project directory ${CC_PROJECT_DIR} already existing."
 fi
 
 # ==-----------------------------------------------------------
@@ -92,8 +92,6 @@ echo -e "## Usage\n" >>"${CC_README_PATH}"
 echo "\`\`\`" >>"${CC_README_PATH}"
 env ${CC_CMD_PATH} --help >>"${CC_README_PATH}"
 echo "\`\`\`" >>"${CC_README_PATH}"
-
-cat "${CC_README_PATH}"
 
 CC_INIT_GIT_REPOSITORY=$(ask "Do you want to initialize a new git repository $(emph "(y/n)")?")
 if [[ "${CC_INIT_GIT_REPOSITORY}" == "y" ]]; then
