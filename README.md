@@ -16,19 +16,19 @@
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
 ```
 
-### Install Samba ([script](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-samba.sh))
+### Install Samba ([Script 📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-samba.sh))
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
 ```
 
-### Install ssmtp [📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh)
+### Install ssmtp [](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh)
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-ssmtp.sh)"
 ```
 
-### Create new command ([link](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh))
+### Create new command ([link 📃](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh))
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)"
