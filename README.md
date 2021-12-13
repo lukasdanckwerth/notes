@@ -2,6 +2,7 @@
 
 - [git](https://github.com/lukasdanckwerth/notes/blob/main/notes/git.md)
 - [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)
+- [Multipass](https://github.com/lukasdanckwerth/notes/blob/main/notes/multipass.md)
 - [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/notes/postgresql.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/notes/htaccess-htpasswd.md)
 
