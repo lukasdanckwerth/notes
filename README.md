@@ -10,19 +10,19 @@
 
 ## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
 
-##### Install apache2, php, postgresql etc. ([`install-server.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
+### Install apache2, php, postgresql etc. ([`install-server.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
 ```
 
-##### Install Samba ([`install-samba.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-samba.sh))
+### Install Samba ([`install-samba.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-samba.sh))
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-samba.sh)"
 ```
 
-##### Install ssmtp ([`install-ssmtp.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh))
+### Install ssmtp ([`install-ssmtp.sh`](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-ssmtp.sh))
 
 ```shell
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-ssmtp.sh)"
@@ -30,7 +30,7 @@ sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwert
 
 ## Create new command
 
-#### Create new command with ([`create-command.sh`](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)) script
+### Create new command with ([`create-command.sh`](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)) script
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)"
