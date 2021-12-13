@@ -28,7 +28,7 @@ sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwert
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-ssmtp.sh)"
 ```
 
-### Create new command with ([link](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)) script
+### Create new command ([link](https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh))
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/create-command.sh)"
