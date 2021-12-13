@@ -1,10 +1,12 @@
 # notes
 
 - [git](https://github.com/lukasdanckwerth/notes/blob/main/notes/git.md)
-- [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)
-- [Multipass](https://github.com/lukasdanckwerth/notes/blob/main/notes/multipass.md)
-- [postgresql](https://github.com/lukasdanckwerth/notes/blob/main/notes/postgresql.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/notes/htaccess-htpasswd.md)
+- [MongoDB](https://github.com/lukasdanckwerth/notes/blob/main/notes/mongodb.md)
+- [Multipass](https://github.com/lukasdanckwerth/notes/blob/main/notes/multipass.md)
+- [Postgresql](https://github.com/lukasdanckwerth/notes/blob/main/notes/postgresql.md)
+- [samba](https://github.com/lukasdanckwerth/notes/blob/main/notes/samba.md)
+- [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)
 
 ## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
 
