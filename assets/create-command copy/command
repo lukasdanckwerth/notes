@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+__VAR_PREFIX__VERSION=56
+
+emph() {
+  echo "\033[1m${*}\033[0m"
+}
+
+die() {
+  echo -e "${*}" && exit 0
+}
+
+print_help() {
+  echo -e "
+usage: {{COMMAND_NAME}} [<argument>]
+
+    $(emph "--help      | -h")          Prints this help and exit.
+    $(emph "--version   | -v")          Prints the version and exit.
+"
+}
+
+print_version() {
+  echo -e "${__VAR_PREFIX__VERSION}"
+}
+
+while (($# > 0)); do
+  case ${1} in
+  action)
+    # do some action ...
+    shift
+    ;;
+  --help | -h)
+    print_help && exit 0
+    ;;
+  --version | -v)
+    print_version && exit 0
+    ;;
+  *)
+    die "illegal option: ${1}"
+    ;;
+  esac
+done
