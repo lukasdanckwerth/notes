@@ -10,7 +10,7 @@
 
 ## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
 
-### Apache2, php, postgresql etc. ([Script 📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
+### Apache2, php, postgresql etc. ([script 📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
 
 ```sh
 sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lukasdanckwerth/notes/main/scripts/install-server.sh)"
