@@ -1,5 +1,9 @@
 # notes
 
+Collection of notes and informations for development.
+
+## Contents
+
 - [git](https://github.com/lukasdanckwerth/notes/blob/main/notes/git.md)
 - [.htaccess / .htpasswd](https://github.com/lukasdanckwerth/notes/blob/main/notes/htaccess-htpasswd.md)
 - [MongoDB](https://github.com/lukasdanckwerth/notes/blob/main/notes/mongodb.md)
@@ -9,6 +13,8 @@
 - [ssh](https://github.com/lukasdanckwerth/notes/blob/main/notes/ssh.md)
 
 ## Install [Scripts](https://github.com/lukasdanckwerth/notes/blob/main/scripts)
+
+> Be careful using this scripts. Always check content before running a script with `sudo`.
 
 ### Apache2, php, postgresql etc. ([script 📃](https://github.com/lukasdanckwerth/notes/blob/main/scripts/install-server.sh))
 
